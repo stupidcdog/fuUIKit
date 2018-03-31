@@ -12,7 +12,7 @@ npm install
 npm run dev
 ```
 
-### build 
+### BUILD 
 ```
 npm run build
 ```

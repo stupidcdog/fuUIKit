@@ -1,0 +1,13 @@
+@include keyframes('animation-spin'){
+	0% {
+		@include cssHack(transform, rotate(0deg));
+	}
+	100% {
+		@include cssHack(transform, rotate(359deg));
+	}
+}
+
+//旋轉動畫
+.an-spin{
+	@include cssHack(animation, animation-spin 2s infinite linear);
+}

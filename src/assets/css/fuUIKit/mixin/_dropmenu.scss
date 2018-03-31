@@ -1,0 +1,220 @@
+@mixin createDropmenu($TAG){
+	#{$TAG}{
+		&.active, &:active, &.focus, &:focus{
+			&:not(.fade):not(.drop){ >#{$TAG}#{'-content'}{ display: block; } }
+			&.fade{ >#{$TAG}#{'-content'}{ visibility: visible; opacity: 1; }  }
+			&.drop{ >#{$TAG}#{'-content'}{ max-height: 300px; }  }
+		}
+		&:not(.fade):not(.drop){ >#{$TAG}#{'-content'}{ display: none; } }
+		&.fade{
+			>#{$TAG}#{'-content'}{ 
+				opacity: 0;
+				visibility: hidden;
+			} 
+		}
+		&.drop{
+			>#{$TAG}#{'-content'}{ 
+				max-height: 0px; 
+				overflow-y: hidden; 
+			} 
+		}
+
+		&#{$TAG}#{'-downIcon'}{
+			&.active, &:active, &.focus, &:focus{
+				>#{$TAG}#{'-btn'}{ 
+					&:after{
+						@include cssHack(transform, rotate(180deg));
+					}
+				}
+			}
+			>#{$TAG}#{'-btn'}{ 
+				&:after{
+					content: '';
+					border-style: solid;
+					border-width: 6px 6px 0;
+					border-color: #eee transparent;
+					width: 0px;
+					height: 0px;
+					margin-top: -3px;
+					position: absolute;
+					right: 8px;
+					top: 50%;
+				}
+				position: relative;
+				padding-right: 25px;
+			}
+		}
+
+		>#{$TAG}#{'-btn'}{ 
+			@include cssHack(user-select, none);
+			cursor: pointer;
+			z-index: 0;
+		}
+		>#{$TAG}#{'-content'}{ 
+			>*{ display: block; }
+			@include hack_transition(all, 0.3s, ease-in-out); 
+			@include createBoxShadow(#ccc, 0px, 0px, 5px, 0.5);
+			position: absolute;
+			z-index: 1;
+			background-color:white;
+			min-width: 100px;
+		}
+
+		display: inline-block;
+
+		@content;
+	}
+}
+
+@mixin createDropmenuStyle($TAG, $SUBTAG){
+	&#{$TAG}#{$SUBTAG}{
+		&:active, &.active, &:focus, &.focus{
+			>#{$TAG}#{'-btn'}{
+				&:after{
+					@include cssHack(transform, rotate(180deg));
+				}
+			}
+		}
+		>#{$TAG}#{'-btn'}{
+			&:after{
+				content: '';
+				border-style: solid;
+				border-width: 6px 6px 0;
+				border-color: #ccc transparent;
+				width: 0px;
+				height: 0px;
+				margin-top: -3px;
+				position: absolute;
+				right: 15px;
+				top: 50%;
+			}
+			@include createBoxShadow(rgba(50,50,50, 0.1), 0px, 1px, 1px, 0.05);
+			position: relative;
+			background-color: $w-color;
+			border: 1px solid rgba(0,0,0,0.15);
+			border-radius: 6px;
+			font-weight: bold;
+			padding: 10px;
+			min-width: 200px;
+		}
+		>#{$TAG}#{'-content'}{
+			&:before{
+				content: '';
+				width: 0;
+				height: 0;
+				position: absolute;
+				bottom: 100%;
+				right: 14px;
+				border-width: 0px 7px 8px 7px;
+				border-style: solid;
+				border-color: rgba(0,0,0,0.1) transparent;
+			}
+			&:after{
+				content: '';
+				width: 0;
+				height: 0;
+				position: absolute;
+				bottom: 100%;
+				right: 15px;
+				border-width: 0px 6px 6px 6px;
+				border-style: solid;
+				border-color: $w-color transparent;
+			}
+			
+			>*{
+				&:last-child{
+					border-bottom-width: 0px;
+				}
+				display: block;
+				padding: 10px;
+				border-bottom: 1px solid #f6f6f6;
+			}
+
+			a{ text-decoration: none; }
+			>a:hover{
+				background-color: lighten($g-color, 15%);
+			}
+			
+			@include createBoxShadow(rgba(50,50,50, 0.2), 0px, 0px, 1px, 0.1);
+			position: absolute;
+			left: 0px;
+			right: 0px;
+			top: 108%;
+			border-radius: 6px;
+			border: 1px solid rgba(0,0,0,0.15);
+			background-color: $w-color;
+			font-weight: normal;
+			overflow: hidden;
+		}
+
+		position: relative;
+	}
+}
+
+$_color: #4cbeff;
+@mixin createDropmenuStyle_2($TAG, $SUBTAG){
+	&#{$TAG}#{$SUBTAG}{
+		&:active, &.active, &:focus, &.focus{
+			>#{$TAG}#{'-btn'}{
+				&:after{
+					@include cssHack(transform, rotate(180deg));
+					border-color: $w-color transparent;
+				}
+				border-bottom-left-radius: 0px;
+				border-bottom-right-radius: 0px;
+				background-color: $_color;
+				color: $w-color;
+			}
+			>#{$TAG}#{'-content'}{
+				border-top-left-radius: 0px;
+				border-top-right-radius: 0px;
+			}
+		}
+
+		>#{$TAG}#{'-btn'}{
+			&:after{
+				content: '';
+				border-style: solid;
+				border-width: 6px 6px 0;
+				border-color: $_color transparent;
+				width: 0px;
+				height: 0px;
+				margin-top: -3px;
+				position: absolute;
+				right: 15px;
+				top: 50%;
+			}
+			@include createBoxShadow(rgba(50,50,50, 0.1), 0px, 1px, 1px, 0.05);
+			position: relative;
+			background-color: $w-color;
+			border-radius: 6px;
+			font-size: bold;
+			padding: 10px;
+			min-width: 200px;
+			color: $_color;
+		}
+		>#{$TAG}#{'-content'}{
+			>*{
+				display: block;
+				padding: 10px;
+				border-bottom: 1px solid #f6f6f6;
+			}
+
+			a{ text-decoration: none; }
+			>a:hover{
+				background-color: lighten($_color, 25%);
+			}
+			
+			@include createBoxShadow(rgba(50,50,50, 0.2), 0px, 0px, 1px, 0.1);
+			position: absolute;
+			left: 0px;
+			right: 0px;
+			border-radius: 6px;
+			background-color: $w-color;
+			font-weight: normal;
+			overflow: hidden;
+		}
+
+		position: relative;
+	}
+}

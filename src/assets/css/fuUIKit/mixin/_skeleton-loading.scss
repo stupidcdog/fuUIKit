@@ -1,0 +1,60 @@
+@mixin createSkeletonLoading($TAG, $C, $S){
+	@include keyframes('skeletonAnimation'){
+		0%{
+			@include cssHack(transform, rotate(0deg));
+			opacity: 1;
+		}
+		50%{
+			opacity: .7;
+		}	
+		100%{
+			@include cssHack(transform, rotate(360deg));
+			opacity: 1;
+		}
+	}
+	#{$TAG}{
+		&:before{
+			border-radius: 50%;
+			content: " ";
+			width: $S;
+			height: $S;
+			display: inline-block;
+			box-sizing: border-box;
+			border-top: solid $S/8 transparent;
+			border-right: solid $S/8 transparent;
+			border-bottom: solid $S/8 transparent;
+			border-left: solid $S/8 $C;
+			position: absolute;
+			top: -($S/8);
+			left: -($S/8);
+			transform: rotateZ(-30deg);
+		}
+		&:after{
+			border-radius: 50%;
+			content: " ";
+			width: $S;
+			height: $S;
+			display: inline-block;
+			box-sizing: border-box;
+			border-top: solid $S/8 transparent;
+			border-right: solid $S/8 $C;
+			border-bottom: solid $S/8 transparent;
+			border-left: solid $S/8 transparent;
+			position: absolute;
+			top: -($S/8);
+			right: -($S/8);
+			transform: rotateZ(30deg);
+		}
+		border-radius: 50%;
+		border-top: solid $S/8 $C;
+		border-right: solid $S/8 transparent;
+		border-bottom: solid $S/8 transparent;
+		border-left: solid $S/8 transparent;
+		width: $S;
+		height: $S;
+		display: inline-block;
+		box-sizing: border-box;
+		position: relative;
+		@include cssHack(animation, skeletonAnimation 1s linear infinite);
+	}
+}

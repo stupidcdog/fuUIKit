@@ -1,0 +1,13 @@
+@include createTip(
+	'.tip', 
+	10px, 
+	$tip-default-color,
+	#666
+){
+	@include _createTipColor('&.tip', '-primary', $tip-primary-color, $w-color);
+	@include _createTipColor('&.tip', '-info', $tip-info-color, $w-color);
+	@include _createTipColor('&.tip', '-success', $tip-success-color, $w-color);
+	@include _createTipColor('&.tip', '-warning', $tip-warning-color, $w-color);
+	@include _createTipColor('&.tip', '-fail', $tip-fail-color, $w-color);
+	@include _createTipColor('&.tip', '-purple', $tip-purple-color, $w-color);
+}

@@ -1,0 +1,6 @@
+@include createTab('.tab'){
+	@include createTabStyle('.tab', '-wrapper');
+	@include createTabStyle2('.tab', '-wrapper2');
+	@include createTabStyle3('.tab', '-wrapper3');
+	@include createTabStyle4('.tab', '-wrapper4');
+}

@@ -1,0 +1,8 @@
+//頁面進退場動畫
+.page-enter-active{
+	animation: fade .5s ease-in-out; 
+}
+.page-leave-active{
+	animation: fade .5s ease-in-out; 
+	animation-direction: reverse;
+}

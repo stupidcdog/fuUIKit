@@ -1,0 +1,37 @@
+@mixin createBreakCrumb($TAG){
+	#{$TAG}{
+		a{
+			text-decoration: none;
+		}
+
+		li{
+			display: inline-block;
+			padding: 0px 5px;
+		}
+
+		@content;
+	}
+}
+
+@mixin _createBreakCrumbStyle_1($SUBTAG){
+	#{$SUBTAG}{
+		li{
+			&:last-child{
+				&:after{
+					content: '';
+				}
+			}
+			&:after{
+				font-family: 'normalIcon' !important;
+				content: "\e945";
+				font-size: 1.4em;
+				padding: 0px 15px;
+			}
+			span{
+				position: relative;
+				top: -3px;
+			}
+			padding: 0px;
+		}
+	}
+}

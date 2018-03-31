@@ -1,0 +1,302 @@
+@mixin createTab($TAG){
+	#{$TAG}{
+		>#{$TAG}#{'-menu'}{
+			&.active{
+				font-weight: bold;
+			}
+			>*{ 
+				>*{ 
+					display: block; 
+					width: 100%;
+				}
+				position: relative;
+				display: block;
+				flex: 1;
+				z-index: 1;
+				text-align: center;
+				cursor: pointer;
+			}
+			a{ text-decoration: none; }
+			display: flex;
+			flex-flow: row wrap;
+			justify-content: center;
+			max-width: 100%;
+		}
+		>#{$TAG}#{'-content'}{
+			>*{
+				&.active{
+					display: block;
+				}
+				display: none;
+			}
+		}
+		@content;
+	}
+}
+
+$_s1_c_line: #d1d3d2;
+$_s1_c_font: darken(#d1d3d2, 30%);
+$_s1_c_select_line: #2CC185;
+$_s1_c_select_font: #2CC185;
+@mixin createTabStyle($TAG, $SUBTAG){
+	&#{$TAG}#{$SUBTAG}{
+		>#{$TAG}#{'-menu'}{
+			>*{
+				&:hover{
+					>*{
+						>*{ color: $_s1_c_font; }
+						top: -2px;
+					}
+					top: 2px;
+					border-bottom: 3px solid $_s1_c_font;
+				}
+				&.active{
+					>*{
+						>*{ color: $_s1_c_select_font; }
+						top: -2px;
+					}
+					top: 2px;
+					border-bottom: 3px solid $_s1_c_select_line;
+				}
+				>*{ 
+					>*{ color: lighten($_s1_c_font, 5%); }
+					position: relative; 
+				}
+				position: relative;
+				line-height: 200%;
+				font-size: 1.1em;
+			}
+			padding: 0px 20px;
+			border-bottom: 1px solid $_s1_c_line;
+		}
+		>#{$TAG}#{'-content'}{
+			padding-top: 10px;
+			padding-bottom: 10px;
+		}
+
+		font-size: 16px;
+	}
+}
+
+$_s2_c_line: #DDDDDD;
+$_s2_c-bg: #F6F6F6;
+$_s2_c_font: #74777b;
+$_s2_c_select_line: #2CC185;
+$_s2_c_select_font: #2CC185;
+@mixin createTabStyle2($TAG, $SUBTAG){
+	&#{$TAG}#{$SUBTAG}{
+		>#{$TAG}#{'-menu'}{
+			>*{
+				&:not(:last-child){
+					border-right-width: 0px;
+				}
+				&:hover{
+					>*{ >*{ color: $_s2_c_select_font; } }
+				}
+				&.active{ 
+					>*{ 
+						>*{ color: $_s2_c_select_font; } 
+						border-top-color: $_s2_c_select_line;
+					}
+					@include createBoxShadow($_s2_c_select_line, 0px, 3px, 3px, 0.1, inset);
+					background-color: transparent;
+					border-bottom-width: 0px;
+				}
+				>*{ 
+					>*{ color: $_s2_c_font; } 
+					display: block;
+					border-top: 4px solid transparent;
+				}
+				position: relative;
+				z-index: 1;
+				display: block;
+				line-height: 250%;
+				font-size: 1.1em;
+				border: 1px solid $_s2_c_line;
+				background-color: $_s2_c_bg;
+			}
+		}
+		>#{$TAG}#{'-content'}{
+			padding-top: 10px;
+			padding-bottom: 10px;
+		}
+		font-size: 16px;
+	}
+}
+
+$_s3_c-bg: #bdc2c9;
+$_s3_c_hover_bg: #2CC185;
+$_s3_c_select_bg: #fff;
+$_s3_c_select_font: #74777b;
+@mixin createTabStyle3($TAG, $SUBTAG){
+	&#{$TAG}#{$SUBTAG}{
+		>#{$TAG}#{'-menu'}{
+			>*{
+				&:first-child{
+					>a{
+						span{
+							padding-left: 2em; 
+							border-radius: 30px 0 0;
+						}
+					}
+					margin-left: 0px;
+				}
+				&:last-child{
+					>a{
+						svg{
+							right: 100%;
+							left: auto;
+							transform: scale3d(-1,1,1);
+						}
+						span{
+							padding-right: 2em; 
+							border-radius: 0 30px 0 0;
+						}
+					}
+				}
+				&:hover{
+					>a{
+						svg{
+							fill: $_s3_c_hover_bg;
+						}
+						span{
+							background: $_s3_c_hover_bg;
+							color: white;
+						}
+					}
+				}
+				&.active{
+					>a{
+						span{
+							background: $_s3_c_select_bg;
+							color: $_s3_c_select_font;
+						}
+						svg{
+							fill: $_s3_c_select_bg;
+						}
+					}
+					z-index: 2;
+				}
+				>a{
+					>svg{
+						&:not(:root){
+							overflow: hidden;
+						}
+						&:nth-child(2){
+							right: 100%;
+							left: auto;
+							transform: scale3d(-1,1,1);
+						}
+						position: absolute;
+						left: 100%;
+						margin: 0px;
+						width: 3em;
+						height: 100%;
+						fill: $_s3_c-bg;
+						pointer-events: none;
+					}
+					>span{
+						display: block;
+						overflow: hidden;
+						padding: 0.65em 0;
+						background-color: $_s3_c-bg;
+						text-overflow: ellipsis;
+						white-space: nowrap;
+						vertical-align: middle;
+					}
+					position: relative;
+					overflow: visible;
+					margin: 0 -3em 0 0;
+					padding: 0px;
+					width: auto;
+					color: $w-color;
+				}
+				position: relative;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				line-height: 200%;
+				font-size: 1.1em;
+				margin: 0px 3em;
+			}
+			overflow: hidden;
+		}
+		>#{$TAG}#{'-content'}{
+			background-color: $_s3_c_select_bg;
+			padding-top: 10px;
+			padding-bottom: 10px;
+		}
+		font-size: 16px;
+	}
+}
+
+$_s4_c_font: #2CC185;
+$_s4_c_line: #2CC185;
+$_s4_c_hover_font: #666;
+$_s4_c_select-bg: #2CC185;
+$_s4_c_select-font: #fff;
+@mixin createTabStyle4($TAG, $SUBTAG){
+	&#{$TAG}#{$SUBTAG}{
+		>#{$TAG}#{'-menu'}{
+			>*{
+				&.active{
+					>a{
+						&:before{
+							@include cssHack(transform, translate3d(0,-10px,0));
+						}
+						&:after{
+							@include cssHack(transform, translate3d(0, 0, 0));
+						}
+						>*{
+							color: $_s4_c_select-font;
+						}
+					}
+				}
+				&:last-child{
+					>a{ border-right-width: 0px; }
+				}
+				&:hover{
+					>a{
+						>*{
+							color: $_s4_c_hover_font;
+						}
+					}
+				}
+				>a{
+					&:before{
+						@include cssHack(transform, translate3d(0,5px,0));
+						@include hack_transition(transform, 0.2s, ease-in-out);
+					}
+					&:after{
+						@include cssHack(transform, translate3d(0, 100%,0));
+						@include hack_transition(transform, 0.2s, ease-in-out);
+						content: '';
+						position: absolute;
+						top: 0;
+						left: 0;
+						z-index:-1;
+						width: 100%;
+						height: calc(100% + 1px);
+						background: $_s4_c_select-bg;
+					}
+					>*{
+						@include hack_transition(color, 0.3s, ease-in-out);
+						color: $_s4_c_font;
+						font-weight: bold;
+					}
+					position: relative;
+					overflow: hidden;
+					border-right: 1px solid $_s4_c_line;
+					padding: 1.8em 0px;
+					font-size: 1.1em;
+				}
+
+			}
+		}
+		>#{$TAG}#{'-content'}{
+			padding-top: 10px;
+			padding-bottom: 10px;
+		}
+		font-size: 16px;
+	}
+}
+

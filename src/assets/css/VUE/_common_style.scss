@@ -1,0 +1,218 @@
+*{
+	font-family: $init-FF;	
+	color: $font-color;
+	box-sizing: border-box;
+}
+
+a{
+	&:hover{
+		>span{
+			color: #3F51B5;
+		}
+		color: #3F51B5;
+	}
+	text-decoration: none;
+}
+
+body{
+	background-color: $bg-color;
+	font-family: $init-FF;
+	font-size: $init-FS;
+}
+
+header{
+	.sitename{
+		font-size: 2.2rem;
+		color: white;
+		line-height: $init-headerBarH;
+	}
+	width: 100%;
+	height: $init-headerBarH;
+	background-color: #333;
+}
+
+article{
+	>.header{
+		.title{
+			font-size: 2rem;
+			font-weight: bold;
+		}
+		margin-bottom: 30px;
+	}
+	>.content{
+		>section{
+			&:last-child{
+				margin-bottom: 0px;
+			}
+			margin-bottom: 50px;
+		}
+		.title{
+			>span{
+				line-height: 100%;
+				margin-left: 5px;
+				position: relative;
+				top: -2px;
+			}
+			font-size: 1.4rem;
+			color: #666;
+			line-height: 240%;
+		}
+		.desc{
+			font-size: 1rem;
+			line-height: 200%;
+		}
+		.label{
+			margin-bottom: 10px;
+		}
+		.styleWrap{
+			>*{
+				margin: 2px 0px;
+			}
+			&.box{
+				>*{
+					.item{
+						>*{
+							color:white;
+							line-height: 180%;
+							font-size: 13px;
+						}
+						&.dark{
+							>*{
+								color: #666;
+							}
+						}
+						position: absolute;
+						display: block;
+						vertical-align: middle;
+						text-align: center;
+						top: calc(50% - 60px);
+						width: 100%;
+						padding: 10px;
+					}
+					position: relative;
+					flex-grow: 0;
+					flex-shrink: 0;
+					width: 16%;
+					height: 150px;
+					border:3px solid white;
+				}
+				display: flex;
+				flex-wrap: wrap;
+				align-items: flex-start;
+			}
+			margin-bottom: 10px;
+		}
+	}
+	background-color: white;
+	padding: 45px 70px 50px 70px;
+}
+
+.fullPageCWrap{
+	width: $init-ContentWidth;
+	max-width: 100%;
+	margin: 0px auto;
+}
+
+.pageLoading{
+	position: fixed;
+	top: calc(45% - 26px);
+	left: calc(50% - 26px);
+}
+
+//show source code
+.codeWrap{
+	display: block;
+	width: 100%;
+	padding: 10px 20px;
+	font-size: 14px;
+	background-color: #e8eef6;
+	border-left: 5px solid #558abb;
+	line-height: 150%;
+	margin-bottom: 10px;
+}
+
+//頁面架構
+.pageStructWrap{
+	>*{
+		flex-grow: 1;
+		flex-shrink: 1;
+	}
+	>aside{
+		width: 160px;
+		margin-right: 40px;
+	}
+	>.mainContent{
+		width: calc(100% - 200px);
+	}
+	display: flex;
+	flex-wrap: wrap;
+	margin-top: 40px;
+}
+
+//主頁面選單
+.pageMenuWrap{
+	a{
+		width: 100%;
+		display: block;
+		line-height: 180%;
+		font-size: 14px;
+	}
+	>ul{
+		>li{
+			>a{
+				span{
+					font-weight: bold;
+					font-size: 16px;
+				}
+				line-height: 250%;
+			}
+			&.active{
+				>a{
+					span{
+						color: #3F51B5;
+					}
+					color: #3F51B5;
+				}
+				>ul{
+					max-height: 300px;
+				}
+			}
+			>ul{
+				>li >a{
+					padding-left: 16px;
+				}
+				max-height: 0px;
+				overflow: hidden;
+			}
+		}
+	}
+	position: fixed;
+}
+
+//FONT ICONS
+.iconBoxWrap{
+	>*{
+		.icon{
+			font-size: 3rem;
+			color: #666;
+			margin-bottom: 5px;
+		}
+		.iconTitle{
+			font-size: 14px;
+			line-height: 160%;
+		}
+		flex-grow: 1;
+		flex-shrink: 1;
+		width: 12%;
+		border-right: 1px solid #eee;
+		border-bottom: 1px solid #eee;
+		background-color: white;
+		padding: 20px 10px;
+		text-align: center;
+		color: #666;
+	}
+	border-left: 1px solid #eee;
+	border-top: 1px solid #eee;
+	display: flex;
+	flex-wrap: wrap;
+}

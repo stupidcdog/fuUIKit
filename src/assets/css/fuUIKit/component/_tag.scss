@@ -1,0 +1,28 @@
+@include createTAGStyle(
+	".label", 
+	$label-default-color, 
+	$init-FS, 
+	($init-FS - 4px), 
+	($init-FS + 4px), 
+	$w-color, 
+	$w-color, 
+	4px
+){
+	&.label-NR{
+		border-radius: 0px;
+	}
+	@include _createTAGColor("&.label", "-primary", "", $label-primary-color, darken($label-primary-color, 45%), $w-color);
+	@include _createTAGColor("&.label", "-info", "", $label-info-color, darken($label-info-color, 45%), $w-color);
+	@include _createTAGColor("&.label", "-success", "", $label-success-color, darken($label-success-color, 45%), $w-color);
+	@include _createTAGColor("&.label", "-warning", "", $label-warning-color, darken($label-warning-color, 45%), $w-color);
+	@include _createTAGColor("&.label", "-fail", "", $label-fail-color, darken($label-fail-color, 45%), $w-color);
+	@include _createTAGColor("&.label", "-default", "", $label-default2-color, #666, #999);
+	
+	@include _createTAGGradientColor("&.label", "-G", "", $label-default-color, $w-color);
+	@include _createTAGGradientColor("&.label", "-G-primary", "", $label-primary-color, darken($label-primary-color, 45%));
+	@include _createTAGGradientColor("&.label", "-G-info", "", $label-info-color, darken($label-info-color, 45%));
+	@include _createTAGGradientColor("&.label", "-G-success", "", $label-success-color, darken($label-success-color, 45%));
+	@include _createTAGGradientColor("&.label", "-G-warning", "", $label-warning-color, darken($label-warning-color, 45%));
+	@include _createTAGGradientColor("&.label", "-G-fail", "", $label-fail-color, darken($label-fail-color, 45%));
+	@include _createTAGGradientColor("&.label", "-G-default", "", $label-default2-color, #666);
+}

@@ -1,0 +1,9 @@
+@include createPagination('.pagination', 5px, 16px){
+	@include _createPaginationStyle_1(
+		'&.PG-S-1',
+		8px 10px,
+		(#fcfcfc, #f5f5f5),
+		(#3f51b5, #333333),
+		#ccc
+	);
+}

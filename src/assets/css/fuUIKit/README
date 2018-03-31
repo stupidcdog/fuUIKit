@@ -1,0 +1,31 @@
+version: 0.7.8
+
+20170622
+- 加入loading-ball樣式
+
+20170624
+- 加入CHECKBOX ANIMATE樣式
+
+20170625
+- 加入RADIO樣式
+- 加入CHECKBOX ANIMATE2樣式
+
+20170701 
+- CSS加入ROTATE STYLE
+- REMOVE FUUIKIT EXTEND FOLDER
+
+20170706
+- BOX加入FOOTER機制，並把線移到HEADER，CONTENT, FOOTER去畫
+
+20170707
+- 將COMPONENT > BOX的色系移至SETTING
+
+20170712
+- 加入modal樣式
+
+20170721
+- 加入漸層色*3
+
+20180227
+- fuUIKit頁面改為VUE架構，compass/css3需要透過node_modules去載入
+- 圖片與fonts路徑改為_variable裡設定

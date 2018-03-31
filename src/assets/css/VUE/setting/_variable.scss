@@ -1,0 +1,21 @@
+/*
+整體頁面高、寬度設定
+*/
+$init-FullWidth: 1920px;				//最大寬度
+$init-ContentWidth: 1400px;			//實際內容寬度
+$init-headerBarH: 75px;
+
+/*
+文字樣式設定
+*/
+$init-FF: 微軟正黑體,"Helvetica Neue",Helvetica,Arial,sans-serif;	
+$init-FS: 16px;
+
+/*
+COLOR
+ */
+$font-color: #333;
+$bg-color: #fafafa;
+
+// CACHE PREVENT
+$cache: 20170916;

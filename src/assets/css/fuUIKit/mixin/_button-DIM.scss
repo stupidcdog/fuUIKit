@@ -1,0 +1,67 @@
+/*
+建立立體按鈕樣式
+http://codepen.io/valentin/pen/kahKl
+*/
+@mixin createDimButtonStyle($TAG, $BG, $SpecBG, $FS, $MIN-FS, $MAX-FS, $DEEP, $MIN-DEEP, $MAX-DEEP, $FC, $RADIUS, $PA-V, $PA-L){
+	#{$TAG}{
+		&#{$TAG}#{'-sm'}{ 
+			@include createBoxShadow(#333, 0px, -#{$MIN-DEEP}#{'px'}, 0px, 0.25, inset);
+			font-size: $MIN-FS; 
+			padding: ($PA-V - 3px) ($PA-L - 3px);
+
+		}
+		&#{$TAG}#{'-lg'}{ 
+			@include createBoxShadow(#333, 0px, -#{$MAX-DEEP}#{'px'}, 0px, 0.25, inset);
+			font-size: $MAX-FS; 
+			padding: ($PA-V + 4px) ($PA-L + 4px);
+		}
+
+		
+		&[disabled], &.disabled, &[readonly], &.readonly{
+			cursor: not-allowed;
+			opacity: 0.5;
+		}
+		&:not([disabled]):not(.disabled):not([readonly]):not(.readonly):active, 
+		&:not([disabled]):not(.disabled):not([readonly]):not(.readonly).active{
+			>*{
+				top: 0px;
+			}
+			box-shadow: none;
+		}
+		
+		>*{
+			position: relative;
+			top: -2px;
+			z-index: 0;
+		}
+		@include createBoxShadow(#333, 0px, -#{$DEEP}#{'px'}, 0px, 0.25, inset);
+		@include hack_transition(background-color, 0.2s, linear);
+
+		font-size: $FS;
+		padding: $PA-V $PA-L;
+		border: 0px;
+		border-radius: $RADIUS;
+
+		cursor: pointer;
+
+		@content;
+	}
+	@include _createDimButtonStyle($TAG, '', $BG, $SpecBG, $FC);
+};
+
+@mixin _createDimButtonStyle($TAG, $SUBTAG, $BG, $SpecBG, $FC){
+	#{$TAG}#{$SUBTAG}{
+		&:not([disabled]):not(.disabled):not([readonly]):not(.readonly):hover{
+			background-color: darken($BG, 10%);
+		}
+
+		@if( $SpecBG != ""){
+			background: $SpecBG;
+		}@else{
+			background-color: $BG;
+		}
+		
+		>*{ color: $FC; }
+		color: $FC;
+	}
+};

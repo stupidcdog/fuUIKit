@@ -1,0 +1,50 @@
+@mixin createBoxInfo($TAG, $H, $PA, $BG, $FC){
+	#{$TAG}{
+		>.aside{
+			.icon{
+				font-size: ($H/2);
+			}
+			flex-grow: 0;
+			flex-shrink: 0;
+			padding: ($H/4);
+		}
+		>.content{
+			flex-grow: 1;
+			flex-shrink: 1;
+			padding: $PA;
+			min-width: $H;
+		}
+		@include createBoxShadow(#000, 0px, 0px, 3px, 0.1);
+		border-radius: 2px;
+		display: flex;
+		flex-wrap: no-wrap;
+		min-height: $H;
+		overflow: hidden;
+		@content;
+	}
+	@include _createBoxInfoColor($TAG, '', $BG, $FC);
+}
+
+@mixin _createBoxInfoColor($TAG, $SUBTAG, $BG, $FC){
+	$S-BG: nth($BG, 1);
+	$C-BG: nth($BG, 2);
+	$S-FC: nth($FC, 1);
+	$C-FC: nth($FC, 2);
+
+	#{$TAG}#{$SUBTAG}{
+		>.aside{
+			>*{
+				color: $S-FC;
+			}
+			background-color: $S-BG;
+			color: $S-FC;
+		}
+		>.content{
+			>*{
+				color: $C-FC;
+			}
+			background-color: $C-BG;
+			color: $C-FC;
+		}
+	}
+}

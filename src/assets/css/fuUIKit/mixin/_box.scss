@@ -1,0 +1,119 @@
+/*
+v1.4
+製作box的樣式
+$TAG: BOX名稱
+$RADIUS: 孤度
+$BORDER_W: 線的寬度
+$SPACE: header內間隔與box上下外間隔
+*/
+@mixin createBoxStyle($TAG:'.box', $RADIUS: 0, $BORDER_W: 0, $SPACE: 10px){
+	#{$TAG}{
+		>.header{
+			>span{
+				display: inline-block;
+    				padding-top: 8px;
+			}
+			padding: $SPACE;
+			border-width: $BORDER_W#{px};
+			border-style: solid;
+			border-top-right-radius: $RADIUS#{px};
+			border-top-left-radius: $RADIUS#{px};
+			border-bottom-width: 0px;
+			font-size: 1.2em;
+			font-weight: bold;
+		}
+		>.content{
+			padding: $SPACE;
+			border-width: $BORDER_W#{px};
+			border-style: solid;
+		}
+		>.footer{
+			padding: $SPACE * 0.6 $SPACE;
+			border-width: $BORDER_W#{px};
+			border-style: solid;
+			border-bottom-right-radius: $RADIUS#{px};
+			border-bottom-left-radius: $RADIUS#{px};
+			border-top-width: 0px;
+			font-size: 0.75em;
+		}
+		margin-top: $SPACE;
+		margin-bottom: $SPACE;
+		
+		@content;
+	}
+}
+
+/*
+$TAG: BOX名稱
+$SUBTAG: SUBTAG
+$BG: 背景顏色(header, content, footer)
+$FC: 字體顏色(header, content, footer)
+$BORDER_C: 線的顏色
+*/
+@mixin _createBoxColor($TAG, $SUBTAG, $BG, $FC, $BORDER_C){
+	$_H-BG: nth($BG, 1);
+	$_B-BG: nth($BG, 2);
+	$_F-BG: nth($BG, 3);
+
+	$_H-FC: nth($FC, 1);
+	$_B-FC: nth($FC, 2);
+	$_F-FC: nth($FC, 3);
+
+	&#{$TAG}#{$SUBTAG}{
+		>.header, >.content, >.footer{
+			border-color: $BORDER_C;
+		}
+		>.header{
+			background-color: $_H-BG;
+			color: $_H-FC;
+		}
+		>.content{
+			background-color: $_B-BG;
+			color: $_B-FC;
+		}
+		>.footer{
+			border-top-color: rgba($BORDER_C, 0.2);
+			background-color: $_F-BG;
+			color: $_F-FC;
+		}
+	}
+}
+
+/*
+設定BOX寬度樣式
+$TAG: 主TAG名稱
+$SUBTAG: 附屬TAG名稱
+$S: 開始值
+$E: 結束值
+$SPACE: 間隔
+$UNIT: 單位
+ */
+@mixin _createBoxWidth($TAG, $SUBTAG, $S, $E, $SPACE, $UNIT){
+	@while ($E >= $S){
+		&#{$TAG}#{$SUBTAG}#{$S}{
+			width: $S#{$UNIT};
+		}
+		$S: $S + $SPACE;
+	}
+}
+
+/*
+設定BOX最小高度樣式
+$TAG: 主TAG名稱
+$SUBTAG: 附屬TAG名稱
+$S: 開始值
+$E: 結束值
+$SPACE: 間隔
+$UNIT: 單位
+ */
+@mixin _createBoxMinHidth($TAG, $SUBTAG, $S, $E, $SPACE, $UNIT){
+	@while ($E >= $S){
+		&#{$TAG}#{$SUBTAG}#{$S}{
+			>.content{
+				min-height: $S#{$UNIT};
+			}
+			min-height: $S#{$UNIT};
+		}
+		$S: $S + $SPACE;
+	}
+}

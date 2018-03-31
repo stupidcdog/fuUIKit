@@ -1,0 +1,9 @@
+/*垂直翻轉*/
+@mixin _rotateY(){
+	@include cssHack('transform', rotateX(-180deg));
+}
+
+/*水平翻轉*/
+@mixin _rotateX(){
+	@include cssHack('transform', rotateX(180deg));
+}

@@ -1,0 +1,36 @@
+/*
+HTML
+<div class='loading-ball active' loading-text='loading...'><div></div><div></div><div></div></div>
+*/
+@include createBallLoading('.loading-ball'){
+	@include _createBallLoadingColor('.loading-cW', white, white);
+	@include _createBallLoadingColor('.loading-cB', #2196f3, #2196f3);
+	@include _createBallLoadingColor('.loading-cG', #2CC185, #2CC185);
+
+	@include _createBallSize('.loading-lg', 16px, 16px, 4px 6px);
+	@include _createBallSize('.loading-sm', 7px);
+}
+
+@include createCircleLoading('.loading', 20px, white){
+	@include _createCircleColor('.loading-dark', rgba(#333, 0.8));
+};
+
+/*
+圓圈交換樣式
+ */
+@include createBallSwitchLoading('.loading-ballswitch'){}
+
+/*
+心心跳動
+ */
+@include createSpinnerHeartLoading('.loading-heartSpinner', #eb68a1, 48px);
+
+/*
+儀表LOADING
+ */
+@include createMeterLoading('.loading-meter', #0fd6ff, 48px);
+
+/*
+轉圈圈
+ */
+@include createSkeletonLoading('.loading-skeleton', #f56151, 48px);

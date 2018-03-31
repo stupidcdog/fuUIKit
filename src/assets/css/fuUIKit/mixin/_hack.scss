@@ -1,0 +1,26 @@
+@mixin cssHack($STYLE, $VAL){
+	-webkit-#{$STYLE}: $VAL;
+	-moz-#{$STYLE}: $VAL;
+	-ms-#{$STYLE}: $VAL;
+	-o-#{$STYLE}: $VAL;
+	#{$STYLE}: $VAL;
+}
+
+@mixin IEHack($STYLE, $VAL){
+	#{$STYLE}: $VAL#{'\\9'};    //all ie
+    #{$STYLE}: $VAL#{'\\0'};    //ie8
+    #{'+'}#{$STYLE}:$VAL;       //ie7
+    #{'_'}#{$STYLE}:$VAL;       //ie6
+
+}
+
+@mixin hack_transition($PROPERTY:'all', $DURATION:0.5s, $FUNC:'linear', $DELAY:0s){
+	transition-property: $PROPERTY;
+	transition-duration: $DURATION;
+	transition-delay: $DELAY;
+	transition-timing-function: $FUNC;
+	-webkit-transition-property: $PROPERTY;
+	-webkit-transition-duration: $DURATION;
+	-webkit-transition-delay: $DELAY;
+	-webkit-transition-timing-function: $FUNC;
+}

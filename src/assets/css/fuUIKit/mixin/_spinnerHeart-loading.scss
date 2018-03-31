@@ -1,0 +1,60 @@
+@mixin createSpinnerHeartLoading($TAG, $C, $S){
+	$_S: $S/4;
+	@include keyframes('spinnerHeartAnimation'){
+		0% {
+			@include cssHack(transform, scale(0.9));
+			@include cssHack(transform-origin, center);
+		}
+		15%{
+			@include cssHack(transform, scale(1.4));
+			@include cssHack(transform-origin, center);
+		}
+		30%{
+			@include cssHack(transform, scale(0.9));
+			@include cssHack(transform-origin, center);
+		}
+		45%{
+			@include cssHack(transform, scale(1.4));
+			@include cssHack(transform-origin, center);
+		}
+		60%, 100%{
+			@include cssHack(transform, scale(0.9));
+			@include cssHack(transform-origin, center);
+		}
+	}
+
+	#{$TAG}{
+		&:before{
+			border-radius: $_S $_S 0 0;
+			content: " ";
+			width: $S/2;
+			height: $S/4*3-1;
+			display: inline-block;
+			box-sizing: border-box;
+			background-color: $C;
+			transform: rotate(-45deg);
+			position: absolute;
+			top: 0;
+			left: $S/6;
+		}
+		&:after{
+			border-radius: $_S $_S 0 0;
+			content: " ";
+			width: $S/2;
+			height: $S/4*3-1;
+			display: inline-block;
+			box-sizing: border-box;
+			background-color: $C;
+			transform: rotate(45deg);
+			position: absolute;
+			top: 0;
+			right: $S/6;
+		}
+		width: $S;
+		height: $S;
+		display: inline-block;
+		box-sizing: border-box;
+		position: relative;
+		@include cssHack(animation, spinnerHeartAnimation 2s ease-in-out infinite);
+	}
+}

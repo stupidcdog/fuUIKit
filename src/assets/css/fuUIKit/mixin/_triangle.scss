@@ -1,0 +1,52 @@
+/*
+三角型樣式
+$w: 寬度
+$h: 長度
+$dir: 方向(UP DOWN LEFT RIGHT LD LU RD RU (上 下 左 右 左下 左上 右下 右上))
+$c: 顏色
+
+ref: http://apps.eky.hk/css-triangle-generator/zh-hant
+ */
+
+@mixin createTriangle($w:20, $h:20, $dir:"UP", $c:#cccccc){
+	width: 0;
+	height: 0;
+	border-style: solid;
+	line-height: 0px;
+	_filter: progid:DXImageTransform.Microsoft.Chroma(color='#000000');
+
+	@if $dir == "UP"{
+		border-width: 0px $w#{"px"} $h#{"px"} $w#{"px"};
+		border-color: transparent transparent $c transparent;
+		_border-color: #000000 #000000 $c #000000;
+	} @else if $dir == "DOWN"{
+		border-width: $h#{"px"} $w#{"px"} 0px $w#{"px"};
+		border-color: $c transparent transparent transparent;
+		_border-color: $c #000000 #000000 #000000;
+	} @else if $dir == "LEFT"{
+		border-width: $h#{"px"} $w#{"px"} $h#{"px"} 0px;
+		border-color: transparent $c transparent transparent;
+		_border-color: #000000 $c #000000 #000000;
+	} @else if $dir == "RIGHT"{
+		border-width: $h#{"px"} 0px $h#{"px"} $w#{"px"};
+		border-color: transparent transparent transparent $c;
+		_border-color: #000000 #000000 #000000 $c;
+	} @else if $dir == "LD"{
+		border-width: $h#{"px"} 0px 0px $w#{"px"};
+		border-color: transparent transparent transparent $c;
+		_border-color: #000000 #000000 #000000 $c;
+	} @else if $dir == "LU"{
+		border-width: $h#{"px"} $w#{"px"} 0px 0px;
+		border-color: $c transparent transparent transparent;
+		_border-color: $c #000000 #000000 #000000;
+	} @else if $dir == "RD"{
+		border-width: 0px 0px $h#{"px"} $w#{"px"};
+		border-color: transparent transparent $c transparent;
+		_border-color: #000000 #000000 $c #000000;
+	} @else if $dir == "RU"{
+		border-width: 0px 0px $w#{"px"} $h#{"px"};
+		border-color: transparent $c transparent transparent;
+		_border-color: #000000 $c #000000 #000000;
+	}
+}
+

@@ -1,0 +1,26 @@
+.list-link{
+	li{
+		padding: 6px 8px;
+		text-decoration: none;
+		display: block;
+	}
+
+	>*{
+		>ul{
+			>*{
+				font-size: 0.9em;
+			}
+			margin-top: 6px;
+		}
+		font-size: $init-FS;
+	}
+
+	>a{
+		&:hover{
+			li{
+				background-color: lighten($g-color, 15%);
+			}
+		}
+		text-decoration: none;
+	}
+}

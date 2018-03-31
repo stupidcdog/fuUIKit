@@ -1,0 +1,49 @@
+/*
+建立按鈕樣式
+ */
+@mixin createButtonStyle($TAG, $BG, $SpecBG, $FS, $MIN-FS, $MAX-FS, $FC, $BORDER-W, $BORDER-S, $BORDER-C, $RADIUS, $PA){
+	#{$TAG}{
+		&#{$TAG}#{'-sm'}{ font-size: $MIN-FS; padding: 2px 4px;}
+		&#{$TAG}#{'-lg'}{ font-size: $MAX-FS; padding: 8px 16px;}
+
+		&:not([disabled]):not(.disabled):not([readonly]):not(.readonly):hover{
+			background-image: none;
+		}
+		&[disabled], &.disabled, &[readonly], &.readonly{
+			cursor: not-allowed;
+			opacity: 0.5;
+		}
+
+		font-size: $FS;
+		border-width: $BORDER-W;
+		border-style: $BORDER-S;
+		border-radius: $RADIUS;
+		padding: $PA;
+		
+		cursor: pointer;
+
+		@content;
+	}
+	@include _createButtonColor($TAG, '', $BG, $SpecBG, $FC, $BORDER-C);
+};
+
+@mixin _createButtonColor($TAG, $SUBTAG, $BG, $SpecBG, $FC, $BORDER-C){
+	#{$TAG}#{$SUBTAG}{
+		&:not([disabled]):not(.disabled):not([readonly]):not(.readonly):hover{
+			background-color: darken($BG, 10%);
+		}
+		&:active, &.active{
+			color: darken($FC, 8%);
+			border-color: darken($BORDER-C, 5%);
+			@include createBoxShadow($BORDER-C, 0px, 0px, 5px, 0.3, inset);
+		}
+
+		@if( $SpecBG != ""){
+			background: $SpecBG;
+		}@else{
+			@include linear-gradientColor(($BG 0%, darken($BG, 10%) 100%), top, vertical);
+		}
+		color: $FC;
+		border-color: $BORDER-C;
+	}
+}

@@ -1,0 +1,29 @@
+// @import "compass/css3";
+@import "node_modules/compass-mixins/lib/compass/css3";
+
+@function colorStyle_linear2($isSplit, $c...){
+	$i: 0;
+	$result: ();
+
+	@while (length($c) > $i){
+		$_r: nth($c, $i+1);
+		@if ($isSplit){
+			$_r: nth($_r, 1);
+		}
+
+		$result: append($result, $_r);
+		
+		$i: $i + 1;
+	}
+
+	@return $result;
+}
+
+/*
+	$c: list($color $position, $color $position, ...)
+	$direction: top↓, left→, left top ↘, left bottom ↗
+	$directionByIE: vertical↓, horizontal→ (not use)
+*/
+@mixin linear-gradientColor($c,  $direction, $directionByIE){
+	background-image: linear-gradient($direction, colorStyle_linear2(false, $c));
+}

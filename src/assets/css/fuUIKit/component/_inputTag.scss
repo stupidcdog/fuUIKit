@@ -1,0 +1,25 @@
+.inputTagWrap{
+	>*{
+		float: left;
+		margin: 5px;
+	}
+	>input[type='text']{
+		&.error{
+			background-color: #FBD8DB !important;
+			color: #90111A !important;
+		}
+		border-width: 0px !important;
+		border-radius: 0px !important;
+		box-shadow: none !important;
+		width: auto !important;
+		min-width: 50px !important;
+		padding: 0px !important;
+	}
+	>select{
+		display: none;
+	}
+	padding: 10px;
+	border: 1px solid $l-color;
+	background-color: #w-color;
+	@include _clearfix;
+}

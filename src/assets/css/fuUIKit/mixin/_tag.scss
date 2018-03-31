@@ -1,0 +1,86 @@
+@mixin createTAGStyle($TAG, $C, $FS, $MIN-FS, $MAX-FS, $FSC, $IFSC, $RADIUS){
+	#{$TAG}{
+		&#{$TAG}#{'-sm'}{ font-size: $MIN-FS; padding: 3px 5px;}
+		&#{$TAG}#{'-lg'}{ font-size: $MAX-FS; padding: 12px 15px;}
+		&#{$TAG}#{'-L-T'}{ border-top-width: 4px; }
+		&#{$TAG}#{'-L-L'}{ border-left-width: 4px; }
+		&#{$TAG}#{'-L-R'}{ border-right-width: 4px; }
+		&#{$TAG}#{'-L-B'}{ border-bottom-width: 4px; }
+		
+		&#{$TAG}#{'-twins'}{
+			&#{$TAG}#{'-sm'}{ >*{ padding: 3px 5px; }}
+			&#{$TAG}#{'-lg'}{ >*{ padding: 12px 15px; }}
+			>*{
+				padding: 5px 10px 7px 10px;
+				display: inline-block;
+				vertical-align: middle;
+			}
+			padding: 0px;
+		}
+		i{
+			&.btn-icon{
+				&:hover{
+					opacity: 1;
+				}
+				display: inline-block;
+				cursor: pointer;
+				opacity: 0.7;
+				position: relative;
+				top: 1px;
+			}
+			line-height: $FS;
+			margin-left: 5px;
+		}
+
+		font-size: $FS;
+		border-width: 1px;
+		border-style:solid;
+		border-radius: $RADIUS;
+		padding: 7px 10px;
+		display: inline-block;
+
+		@content;
+	}
+	@include _createTAGColor($TAG, '', '&', $C, $FSC, $IFSC);
+}
+
+@mixin _createTAGColor($TAG, $SUBTAG, $PREFIX, $C, $FSC, $IFSC){
+	#{$TAG}#{$SUBTAG}{
+		#{$PREFIX}#{$TAG}#{'-twins'}{
+			>*{
+				&:first-child{
+					background-color: darken($C, 20%);
+					color: $w-color;
+				}
+			}
+		}
+		
+		i{
+			color: $IFSC;
+		}
+		color: $FSC;
+		background-color: $C;
+		border-color: darken($C, 20%);
+	}
+}
+
+@mixin _createTAGGradientColor($TAG, $SUBTAG, $PREFIX, $C, $FSC){
+	#{$TAG}#{$SUBTAG}{
+		#{$PREFIX}#{$TAG}#{'-twins'}{
+			>*{
+				&:first-child{
+					@include linear-gradientColor((darken($C, 20%) 0%, darken($C, 30%) 100%), top, vertical);
+					color: $w-color;
+				}
+			}
+		}
+
+		@include linear-gradientColor(($C 0%, darken($C, 10%) 100%), top, vertical);
+		color: $FSC;
+		border-color: darken($C, 20%);
+	}
+}
+
+@mixin _createNoneBorder($SUBTAG){
+	border-width: 0px;
+}

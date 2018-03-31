@@ -1,0 +1,293 @@
+@mixin createCheckBox($TAG, $SIZE:20px, $FC: #666){
+	$checkbox-true: url(data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJMYXllcl8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIKCSB2aWV3Qm94PSIwIDAgMjQgMjQiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDI0IDI0IiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPHBhdGggZmlsbD0iIzRBQkI4RiIgZD0iTTIwLDI0SDRjLTIuMiwwLTQtMS44LTQtNFY0YzAtMi4yLDEuOC00LDQtNGgxNmMyLjIsMCw0LDEuOCw0LDR2MTZDMjQsMjIuMiwyMi4yLDI0LDIwLDI0eiIvPgo8cGF0aCBmaWxsPSIjRkZGRkZGIiBkPSJNMjAuNiw1LjdjLTAuNS0wLjUtMS4zLTAuNS0xLjgsMEw5LDE1LjVsLTIuNC0zLjJjLTAuNC0wLjYtMS4zLTAuNy0xLjgtMC4yaDBjLTAuNiwwLjQtMC43LDEuMy0wLjIsMS44CglsMy4zLDQuM2MwLjEsMC4yLDAuMywwLjMsMC41LDAuNGMwLDAsMCwwLDAsMGMwLjEsMCwwLjEsMCwwLjIsMC4xYzAsMCwwLDAsMC4xLDBjMCwwLDAuMSwwLDAuMSwwYzAsMCwwLjEsMCwwLjEsMGMwLDAsMC4xLDAsMC4xLDAKCWMwLjEsMCwwLjEsMCwwLjIsMGMwLDAsMCwwLDAuMSwwYzAuMSwwLDAuMSwwLDAuMi0wLjFjMCwwLDAsMCwwLDBjMC4xLTAuMSwwLjMtMC4xLDAuNC0wLjJMMjAuNiw3LjVDMjEuMSw3LDIxLjEsNi4yLDIwLjYsNS43eiIvPgo8L3N2Zz4=);
+	$checkbox-false: url(data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJMYXllcl8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIKCSB2aWV3Qm94PSIwIDAgMjQgMjQiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDI0IDI0IiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPGc+Cgk8ZyBvcGFjaXR5PSIwLjQ4Ij4KCQk8cGF0aCBmaWxsPSIjQkJCREJGIiBkPSJNMjAsMEg0QzEuOCwwLDAsMS44LDAsNHYxNmMwLDIuMiwxLjgsNCw0LDRoMTZjMi4yLDAsNC0xLjgsNC00VjRDMjQsMS44LDIyLjIsMCwyMCwweiBNMjEsMTkKCQkJYzAsMS4xLTAuOSwyLTIsMkg1Yy0xLjEsMC0yLTAuOS0yLTJWNWMwLTEuMSwwLjktMiwyLTJoMTRjMS4xLDAsMiwwLjksMiwyVjE5eiIvPgoJPC9nPgo8L2c+Cjwvc3ZnPg==);
+	
+	#{$TAG}{
+		& + label{
+			&:before{
+				content: '';
+			    height: $SIZE;
+			    width: $SIZE;
+			    position: absolute;
+			    left: 0px;
+			    top: ($SIZE - 16);
+			    background-repeat: no-repeat;
+				background-image: $checkbox-false;
+			}
+			display: inline-block;
+			position: relative;
+			line-height: 1.7;
+			font-size: 16px;
+			padding-left: $SIZE*1.2;
+			padding-right: $SIZE/2;
+			color: $FC;
+			cursor: pointer;
+		}
+		&:checked + label{
+			&:before{
+				background: $checkbox-true;
+			}
+		}
+		&:disabled + label{
+			cursor: not-allowed;
+			opacity: 0.6;
+		}
+		display: none;
+	}
+}
+
+/*
+動畫版的CHECKBOX(會有彈跳的感覺)
+$TAG: 樣式名稱
+$SIZE: CHECKBOX 大小
+$FC: 字體顏色
+$BG: (CK背景色，CHECKED背景, DISABLED背景)
+$BORDER-C: (CK線, CHECKED線, DISABLED線)
+$SEL-C: (勾勾顏色, DISABLED勾勾顏色)
+ */
+@mixin createAnimateCheckBox($TAG, $SIZE:16px, $FC: #666, $BG:(white, #f0f0f0, #999), $BORDER-C:(transparent, transparent, transparent), $SEL-C: (white, white)){
+	$ckBG: nth($BG, 1);
+	$ckBG-HOVER: nth($BG, 2);
+	$ckBG-DISABLED: nth($BG, 3);
+	$ckBorder: nth($BORDER-C, 1);
+	$ckBorder-HOVER: nth($BORDER-C, 2);
+	$ckBorder-DISABLED: nth($BORDER-C, 3);
+	
+	$SEL-F-C: nth($SEL-C, 1);
+	$SEL-F-DISABLED: nth($SEL-C, 2);
+
+	@include keyframes(scaleCK){
+		40%{
+			width: $SIZE * 2;
+			height: $SIZE / 2;
+		}
+		60%{
+			width: $SIZE - ($SIZE / 5);
+			height: $SIZE + ($SIZE / 5);
+		}
+		75%{
+			width:$SIZE + ($SIZE / 5);
+			height: $SIZE - (($SIZE / 5)*1.5);
+		}
+		100%{
+			width:$SIZE;
+			height: $SIZE;
+		}
+	}
+
+	#{$TAG}{
+		>*{ display: inline-block; }
+		>.ckWrap{
+			>input[type='checkbox']{
+				&:checked + label{
+					.ckBox{
+						i{
+							@include cssHack('transform', translate(-50%, -50%) scale(1));
+							opacity: 1;
+							color: $SEL-F-C;
+						}
+						@include animate('scaleCK', 0.6s, 0s, ease-in-out, forwards);
+						background-color: $ckBG-HOVER;
+						border-color: $ckBorder-HOVER;
+					}
+				}
+				&:disabled + label{
+					.ckBox{
+						cursor: not-allowed;
+						background-color: $ckBG-DISABLED;
+						border-color: $ckBorder-DISABLED;
+					}
+					opacity: 0.6;
+				}
+				&:disabled:checked + label{
+					.ckBox{
+						i{
+							color: $SEL-F-DISABLED;
+						}
+					}
+				}
+				&:not(:disabled) + label{
+					.ckBox{
+						&:hover{
+							background-color: $ckBG-HOVER;
+						}
+					}
+				}
+
+				& + label{
+					.ckBox{
+						i{
+							@include hack_transition(all, 0.2s ease-in-out, 200ms);
+							@include cssHack('transform', translate(-50%, -50%) scale(6));
+							position: absolute;
+							top: 50%;
+							left: 50%;
+							display: inline-block;
+							pointer-events: none;
+							opacity: 0;
+							font-size: $SIZE * 0.7;
+						}
+						@include hack_transition(background, 300ms, ease);
+						@include createBoxShadow(#ccc, 0px, 0px, 4px, 0.8);
+						width: $SIZE;
+						height: $SIZE;
+						background-color: $ckBG;
+						border-radius: 3px;
+						position: relative;
+						border: 1px solid $ckBorder;
+					}
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					flex-direction: row;
+					cursor: pointer;
+					width: $SIZE * 2;
+					height: $SIZE + ($SIZE / 5);
+				}
+				display: none;
+			}
+			width: $SIZE * 2;
+			height: $SIZE + ($SIZE / 5);
+			overflow: hidden;
+		}
+		>.ckTxt{
+			font-size: $SIZE * 0.7;
+			margin-top: -($SIZE * 0.7);
+			display: inline-block;
+			vertical-align: middle;
+		}
+		display: inline-block;
+		margin-right: $SIZE*0.5/2;
+		@content;
+	}
+}
+
+@mixin createAnimateCheckBox2($TAG, $SIZE:16px, $BG: (#9e9e9e, #FFEB3B), $FC: (#9e9e9e, #4FC3F7), $SEL-C: #212121){
+	$ckBG: nth($BG, 1);
+	$ckBG-HOVER: nth($BG, 2);
+	$ckFC: nth($FC, 1);
+	$ckFC-HOVER: nth($FC, 2);
+
+	@include keyframes(shrink-bounce){
+		0%{
+			@include cssHack(transform, scale(1));
+		}
+		33%{    
+			@include cssHack(transform, scale(0.85));
+		}
+		100%{
+			@include cssHack(transform, scale(1));
+		}
+	}
+	@include keyframes(check){
+		0%{
+			width: 0;
+			height: 0;
+			border-color: $SEL-C;
+			@include cssHack('transform', translate3d(0,0,0) rotate(45deg));
+		}
+		33%{
+			width: $SIZE*0.2;
+			height: 0;
+			@include cssHack('transform', translate3d(0,0,0) rotate(45deg));
+		}
+		100%{    
+			width: $SIZE*0.2;
+			height: $SIZE*0.5;    
+			border-color: $SEL-C;
+			@include cssHack('transform', translate3d(0,-($SIZE/2),0) rotate(45deg));
+		}
+	}
+
+	#{$TAG}{
+		>input[type='checkbox']{
+			& +label{
+				> ins{
+					>i{
+						position: absolute;
+						bottom: 0;
+						color: $ckFC-HOVER;
+						font-style: normal;
+					}
+					@include hack_transition(height, 300ms, cubic-bezier(.4,.0,.23,1));
+					position: absolute;
+					display: block;
+					left: $SIZE*1.6;
+					bottom: 2px;
+					height: 0px;
+					width: 100%;
+					overflow: hidden;
+					text-decoration: none;
+				}
+				>span{
+					@include hack_transition(all, 250ms, cubic-bezier(.4,.0,.23,1));
+					width: $SIZE;
+					height: $SIZE;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					background: transparent;
+					border: 2px solid $ckBG;
+					border-radius: 2px;
+					margin-right: $SIZE*0.6;
+					cursor: pointer;  
+				}
+				@include hack_transition(color, 250ms, cubic-bezier(.4,.0,.23,1));
+				position: relative;
+				display: flex;
+				align-items: center;
+				color: $ckFC;
+			}
+			&:not(:disabled) +label:hover{
+				>span{
+					background-color: rgba($ckFC-HOVER, 0.2);
+				}
+				color: rgba($ckFC-HOVER, 0.8);
+			}
+			&:focus +label{
+				>span{
+					background-color: rgba($ckFC-HOVER, 0.2);
+				}
+				color: rgba($ckFC-HOVER, 0.8);
+			}
+			&:checked{
+				& +label{
+					>ins{
+						i{
+							font-style: normal;
+						}
+						height: 100%;
+					}
+					>span{
+						&:before{
+							@include animate('check', 125ms, 250ms, cubic-bezier(.4,.0,.23,1), forwards);
+							@include cssHack(transform, rotate(45deg));
+							@include cssHack(transform-origin, 100% 100%);
+							content: "";
+							position: absolute;
+							top: 10px;
+							left: -1px;
+							border-right: 3px solid transparent;
+							border-bottom: 3px solid transparent;
+						}
+						@include animate('shrink-bounce', 200ms, 0ms, cubic-bezier(.4,.0,.23,1), forwards);
+						background-color: $ckBG-HOVER;
+						border-color: $ckBG-HOVER;
+						
+					}
+				}
+			}
+			&:disabled{
+				& +label{
+					cursor: not-allowed;
+					opacity: 0.6;
+				}
+			}
+			width: 0px;
+			height: 0px;
+			display: none;
+		}
+		display: inline-block;
+		margin-right: $SIZE*0.6;
+	}
+}

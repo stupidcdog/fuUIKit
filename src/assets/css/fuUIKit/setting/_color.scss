@@ -1,0 +1,90 @@
+$w-color: 	#FFF;				//白色調
+$g-color:	#CCC;			//中間灰色調
+
+$l-color: #eee;				//線色系
+
+/*button color*/
+$btn-default-color: #f6f6f6;		//預設色調
+$btn-primary-color: #6d9cf4;		//主訊息相關色調
+$btn-info-color: 	#6ce4f4;		//訊息相關色調
+$btn-success-color: #4fc96a;		//成功相關色調
+$btn-warning-color: #eca439;		//警告相關色調
+$btn-fail-color: 	#f28c7d;		//失敗相關色調
+
+/*label color*/
+$label-default-color: #a19990;		//預設色調
+$label-default2-color: #fff;		//預設色調
+$label-primary-color: #6D9CF4;		//主訊息相關色調
+$label-info-color: 	#a4dbe2;		//訊息相關色調
+$label-success-color: #82c090;		//成功相關色調
+$label-warning-color: #f7c178;		//警告相關色調
+$label-fail-color: 	#F7B9B0;		//失敗相關色調
+
+/*table color (以背景色為基底色調) */
+$table-default-color: #FAFAFA;		//預設色調
+$table-blue-color: 	#f4fbfd;		//藍色色調
+$table-green-color: #ecf7f2;		//綠色色調
+$table-orange-color: #fdfaf4;		//橘色色調
+$table-red-color: 	#fdf4f4;		//紅色色調
+
+/*
+box color
+背景
+$box-[status]-bg-color: (header, content, footer)
+文字
+$box-[status]-color: (header, content, footer)
+線色
+$box-[status]-line-color
+ */
+$box-default-bg-color: (#ccc, #fbfbfb, #f8f8f8);
+$box-default-color: (#666, #999, #666);
+$box-default-line-color: darken(#ccc, 10%);
+$box-primary-bg-color: (#6D9CF4, #ffffff, lighten(#6D9CF4, 25%));
+$box-primary-color: (#fff, #999, #5783d2);
+$box-primary-line-color: darken(#6D9CF4, 10%);
+$box-info-bg-color: (#00BCD4, #ffffff, rgb(221, 242, 245));
+$box-info-color: (#fff, #999, #00BCD4);
+$box-info-line-color: darken(#00BCD4, 10%);
+$box-success-bg-color: (#4caf50, #ffffff, #edf9ee);
+$box-success-color: (#fff, #999, #4caf50);
+$box-success-line-color: darken(#4caf50, 10%);
+$box-warning-bg-color: (#ff9800, #ffffff, #fff4e3);
+$box-warning-color: (#fff, #999, #FF9800);
+$box-warning-line-color: darken(#FF9800, 10%);
+$box-fail-bg-color: (#d33c26, #ffffff, #fdf5f3);
+$box-fail-color: (#fff, #999, #d33c26);
+$box-fail-line-color: darken(#d33c26, 10%);
+
+/*modal color*/
+$modal-bg: #fff;
+$modal-header-color: #3598dc;
+$modal-body-color: #666;
+$modal-footer-color: #666;
+$modal-header-line: #ccc;
+$modal-footer-line: #eee;
+$modal-close-color: #666;
+$modal-boxshadow-color: #ccc;
+
+/*TIP COLOR*/
+$tip-primary-color: #6D9CF4;		//主訊息相關色調
+$tip-info-color: 	#00c0ef;		//訊息相關色調
+$tip-success-color: #00a65a ;		//成功相關色調
+$tip-warning-color: #f39c12;		//警告相關色調
+$tip-fail-color: #dd4b39;			//失敗相關色調
+$tip-purple-color: #777fb0;			//紫色
+$tip-default-color: #eee;
+
+/*BOXIFNO COLOR*/
+$bi-primary-color: #6D9CF4;			//主訊息相關色調
+$bi-info-color: 	#00c0ef;		//訊息相關色調
+$bi-success-color: #00a65a ;		//成功相關色調
+$bi-warning-color: #f39c12;			//警告相關色調
+$bi-fail-color: #dd4b39;			//失敗相關色調
+$bi-default-color: #ccc;
+
+$primary-color: #6D9CF4;			//主訊息相關色調
+$info-color: 	#a4dbe2;			//訊息相關色調
+$success-color: #2fb64d;			//成功相關色調
+$warning-color: #f7c178;			//警告相關色調
+$fail-color: 	#d33c26;			//失敗相關色調
+

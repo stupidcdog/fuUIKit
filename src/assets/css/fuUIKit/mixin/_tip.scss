@@ -1,0 +1,22 @@
+@mixin createTip($TAG, $PA, $BG, $C)
+{
+	#{$TAG}{
+		width: 100%;
+		border-left-width: 5px;
+		border-left-style: solid;
+		padding: $PA;
+		border-radius: 2px;
+		@content;
+	}
+	@include _createTipColor($TAG, '', $BG, $C);
+}
+
+@mixin _createTipColor($TAG, $SUBTAG, $BG, $C)
+{
+	#{$TAG}#{$SUBTAG}{
+		background-color: $BG;
+		border-left-color: darken($BG, 10%);
+		color: $C;
+	}
+}
+

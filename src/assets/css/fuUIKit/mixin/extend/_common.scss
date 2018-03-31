@@ -1,0 +1,32 @@
+@mixin _clearfix(){
+	&:before,&:after {
+	  content: " "; // 1
+	  display: table; // 2
+	}
+	&:after {
+	  clear: both;
+	}
+	clear: both;
+}
+
+//翻轉180度
+@mixin _rotate-180(){
+	@include cssHack(transfrom, rotate(3.14159rad));
+}
+
+//水平翻轉
+@mixin _rotate-horizontal(){
+	@include cssHack(transfrom, scaleX(-1));
+}
+
+//垂直翻轉
+@mixin _rotate-vertical(){
+	@include cssHack(transfrom, scaleY(-1));
+}
+
+//背景全圖
+@mixin _fullImage(){
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: top center;	
+}

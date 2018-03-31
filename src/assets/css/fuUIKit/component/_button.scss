@@ -1,0 +1,61 @@
+@include createButtonStyle(
+	'.btn', 
+	$btn-default-color, 
+	'', 
+	$init-FS, 
+	($init-FS - 4px), 
+	($init-FS + 4px), 
+	darken($btn-default-color, 65%), 
+	1px, solid, 
+	darken($btn-default-color, 25%), 
+	6px, 
+	6px 10px
+){
+	@include _createButtonColor('&.btn', '-primary', $btn-primary-color, '', $w-color, darken($btn-primary-color, 10%));
+	@include _createButtonColor('&.btn', '-info', darken($btn-info-color, 6%), '', $w-color, darken($btn-info-color, 15%));
+	@include _createButtonColor('&.btn', '-success', darken($btn-success-color, 3%), '', $w-color, darken($btn-success-color, 15%));
+	@include _createButtonColor('&.btn', '-warning', $btn-warning-color, '', $w-color, darken($btn-warning-color, 10%));
+	@include _createButtonColor('&.btn', '-fail', darken($btn-fail-color, 6%), '', $w-color, darken($btn-fail-color, 15%));
+}
+
+//立體按鈕
+@include createDimButtonStyle(
+	'.btn-dim', 
+	$btn-default-color, 
+	'', 
+	$init-FS, 
+	($init-FS - 4px), 
+	($init-FS + 4px), 
+	4, 
+	3, 
+	5, 
+	darken($btn-default-color, 65%), 
+	6px, 
+	8px,
+	16px
+){
+	@include _createDimButtonStyle('&.btn-dim', '-primary', $btn-primary-color, '', $w-color);
+	@include _createDimButtonStyle('&.btn-dim', '-info', darken($btn-info-color, 6%), '', $w-color);
+	@include _createDimButtonStyle('&.btn-dim', '-success', darken($btn-success-color, 3%), '', $w-color);
+	@include _createDimButtonStyle('&.btn-dim', '-warning', $btn-warning-color, '', $w-color);
+	@include _createDimButtonStyle('&.btn-dim', '-fail', darken($btn-fail-color, 6%), '', $w-color);
+}
+
+
+
+/* group-button */
+.btn-group{
+	>*{
+		&:first-child{
+			border-top-left-radius: 6px;
+			border-bottom-left-radius: 6px;
+		}
+		&:last-child{
+			border-top-right-radius: 6px;
+			border-bottom-right-radius: 6px;
+		}
+		display: inline-block;
+		border-radius: 0px;
+		margin: 0px 0px 0px -5px;
+	}
+}

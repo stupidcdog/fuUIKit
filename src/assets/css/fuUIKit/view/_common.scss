@@ -1,0 +1,58 @@
+.txtR{ text-align: right ; }
+.txtL{ text-align: left ; }
+.txtC{ text-align: center ; }
+
+.floatR{ float: right; }
+.floatL{ float: left; }
+.floatN{ float:none; }
+
+.overHide{ overflow: hidden; }
+.overHideX{ overflow-x: hidden; }
+.overHideY{ overflow-y: hidden;}
+
+.hidden{ display: none; }
+.visibility{ visibility: hidden; }
+
+.alignT{ vertical-align: top; }
+.alignB{ vertical-align: bottom; }
+.alignM{ vertical-align: middle; }
+
+.clr{ @include _clearfix(); }
+
+.FC-W{ color: $w-color; }
+.F-DIM{ @include createDimFont(#cccccc); } 			//立體字
+.F-BORDER{ @include createFontBorder(#999); } 		//文字邊框
+
+
+@include createBorderStyle(".L", solid, 1px, $g-color);
+
+@include createHStyle($init-FS, 8, 2, 6, 4);
+
+@include createWidth(0, 100, 5);
+
+@include createCommonSpace("FS-", "font-size", 10, 40, 2);
+@include createCommonSpace("BR-", "border-radius", 0, 8, 2);
+
+@include createCommonSpace("PA-", "padding", 0, 50, 5);
+@include createCommonSpace("PA-T-", "padding-top", 0, 50, 5);
+@include createCommonSpace("PA-R-", "padding-right", 0, 50, 5);
+@include createCommonSpace("PA-L-", "padding-left", 0, 50, 5);
+@include createCommonSpace("PA-B-", "padding-bottom", 0, 50, 5);
+
+@include createChildCommonSpace("PA-ITEM-", "padding", 0, 50, 5);
+@include createChildCommonSpace("PA-ITEM-T-", "padding-top", 0, 50, 5);
+@include createChildCommonSpace("PA-ITEM-R-", "padding-right", 0, 50, 5);
+@include createChildCommonSpace("PA-ITEM-L-", "padding-left", 0, 50, 5);
+@include createChildCommonSpace("PA-ITEM-B-", "padding-bottom", 0, 50, 5);
+
+@include createCommonSpace("MA-", "margin", 0, 50, 5);
+@include createCommonSpace("MA-T-", "margin-top", 0, 50, 5);
+@include createCommonSpace("MA-R-", "margin-right", 0, 50, 5);
+@include createCommonSpace("MA-L-", "margin-left", 0, 50, 5);
+@include createCommonSpace("MA-B-", "margin-bottom", 0, 50, 5);
+
+@include createChildCommonSpace("MA-ITEM-", "margin", 0, 50, 5);
+@include createChildCommonSpace("MA-ITEM-T-", "margin-top", 0, 50, 5);
+@include createChildCommonSpace("MA-ITEM-R-", "margin-right", 0, 50, 5);
+@include createChildCommonSpace("MA-ITEM-L-", "margin-left", 0, 50, 5);
+@include createChildCommonSpace("MA-ITEM-B-", "margin-bottom", 0, 50, 5);

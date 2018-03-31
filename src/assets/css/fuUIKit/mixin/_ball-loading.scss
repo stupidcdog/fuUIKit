@@ -1,0 +1,81 @@
+@include keyframes("ball-pulse"){
+	0%, 60%, 100%{
+		opacity: 1;
+		@include cssHack(transform, scale(1)); 
+	}
+	30%{
+		opacity: 0.1;
+		@include cssHack(transform, scale(0.01)); 
+	}
+}
+
+@mixin createBallLoading($TAG, $SIZE: 10px, $MA: 4px, $BALL-NUM: 3, $DELAY: 100ms, $initC: #666){
+	#{$TAG}{
+		>div{
+			$_D: 0ms;
+			@for $i from 1 through $BALL-NUM{
+				&:nth-child(#{$i}){
+					@include cssHack(animation-delay, $_D); 
+				}
+				$_D: $_D - $DELAY;
+			}
+
+			position: relative;
+			@include cssHack(box-sizing, border-box);
+			@include cssHack(animation, ball-pulse 1s ease infinite); 
+
+			width: $SIZE;
+			height: $SIZE;
+			margin: $MA;
+			border-radius: 100%;
+			display: inline-block;
+			float: none;
+			background-color: currentColor;
+			border: 1px solid transparent;
+		}
+		&:after{
+			content: attr(loading-text);
+			color: currentColor;
+			font-size: 14px;
+			display: block;
+			letter-spacing: 1px;
+		}
+		&.active{
+			display: inline-block;
+		}
+
+		@include cssHack(box-sizing, border-box);
+		display: none;
+		font-size: 0;
+		color: $initC;
+		margin: 0px auto;
+		text-align: center;
+
+		@content;
+	}
+}
+
+@mixin _createBallLoadingColor($SUBTAG, $BG, $FC, $BORDER-C:transparent){
+	&#{$SUBTAG}{
+		>div{
+			background-color: $BG;
+			border-color: $BORDER-C;
+		}
+		&:after{
+			color: $FC;
+		}
+	}
+}
+
+@mixin _createBallSize($SUBTAG, $SIZE, $FSIZE: 14px, $MA:4px){
+	&#{$SUBTAG}{
+		>div{
+			width: $SIZE;
+			height: $SIZE;
+			margin: $MA;
+		}
+		&:after{
+			font-size: $FSIZE;
+		}
+	}
+}

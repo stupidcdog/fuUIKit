@@ -1,0 +1,25 @@
+// @include createModal('.modal', 800px, 16px, 6px){
+// 	@include _createModalSize('.modal', '-lg', 1000px);
+// 	@include _createModalSize('.modal','-sm', 600px);
+	
+// 	@include _createModalBehavor_DROP('.modal');
+
+// 	@include _createModalStyle_1(
+// 		'', 
+// 		'', 
+// 		$modal-bg, 
+// 		($modal-header-color, $modal-body-color, $modal-footer-color), 
+// 		$modal-close-color, 
+// 		($modal-header-line, $modal-footer-line), 
+// 		$modal-boxshadow-color
+// 	);
+// }
+
+@include createFuModal('.modal', 800px){
+	@include _createFuModalAnimation('&.modal-');
+	@include _createFuModalPosition('&.modal-');
+	@include _createFuModalSize('&.modal-', ('lg', 'sm'), (1000px, 360px));
+	@include _createFuModal_STYLE1('&.modal', '-s1', 6px);
+
+	@include _createFuModal_STYLE2('&.modal', '-column', 4px);
+}

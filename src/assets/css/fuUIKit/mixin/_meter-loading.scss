@@ -1,0 +1,37 @@
+@mixin createMeterLoading($TAG, $C, $S){
+	@include keyframes('meterAnimation'){
+		0% {
+			@include cssHack(transform, rotate(-45deg));
+		}
+		100%{
+			@include cssHack(transform, rotate(315deg));
+		}
+	}
+
+	#{$TAG}{
+		&:before{
+			border-radius: $S/16;
+			content: " ";
+			width:$S/8;
+			height: $S/4;
+			display: inline-block;
+			box-sizing: border-box;
+			background-color: $C;
+			position: absolute;
+			top: ceil($S/10);
+			left: $S/3;
+			transform-origin: center bottom;
+			@include cssHack(animation, meterAnimation 1s linear infinite);
+		}
+		border-radius: 50%;
+		border-top: solid $S/8 $C;
+		border-right: solid $S/8 $C;
+		border-bottom: solid $S/8 $C;
+		border-left: solid $S/8 $C;
+		width: $S;
+		height: $S;
+		display: inline-block;
+		box-sizing: border-box;
+		position: relative;
+	}
+}

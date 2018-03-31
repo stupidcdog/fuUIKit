@@ -1,0 +1,37 @@
+@mixin createRadioBox($TAG, $SIZE:20px, $FC: #666){
+	$radio-true: url(data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJMYXllcl8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIKCSB2aWV3Qm94PSIwIDAgMjQgMjQiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDI0IDI0IiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPGc+Cgk8cGF0aCBvcGFjaXR5PSIwLjQ4IiBmaWxsPSIjMkE5OTc3IiBkPSJNMTIsMEM1LjQsMCwwLDUuNCwwLDEyYzAsNi42LDUuNCwxMiwxMiwxMnMxMi01LjQsMTItMTJDMjQsNS40LDE4LjYsMCwxMiwweiBNMTIsMjIKCQlDNi41LDIyLDIsMTcuNSwyLDEyQzIsNi41LDYuNSwyLDEyLDJzMTAsNC41LDEwLDEwQzIyLDE3LjUsMTcuNSwyMiwxMiwyMnoiLz4KPC9nPgo8Y2lyY2xlIGZpbGw9IiM0QUJCOEYiIGN4PSIxMiIgY3k9IjEyIiByPSI4Ii8+Cjwvc3ZnPg==);
+	$radio-false: url(data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJMYXllcl8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIKCSB2aWV3Qm94PSIwIDAgMjQgMjQiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDI0IDI0IiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPGNpcmNsZSBvcGFjaXR5PSIwLjQ4IiBmaWxsPSIjQkJCREJGIiBjeD0iMTIiIGN5PSIxMiIgcj0iMTAiLz4KPC9zdmc+);
+
+	#{$TAG}{
+		& + label{
+			&:before{
+				content: '';
+			    height: $SIZE;
+			    width: $SIZE;
+			    position: absolute;
+			    left: 0px;
+			    top: ($SIZE - 16);
+			    background-repeat: no-repeat;
+				background-image: $radio-false;
+			}
+			display: inline-block;
+			position: relative;
+			line-height: 1.7;
+			font-size: 16px;
+			padding-left: $SIZE*1.2;
+			padding-right: $SIZE/2;
+			color: $FC;
+			cursor: pointer;
+		}
+		&:checked + label{
+			&:before{
+				background: $radio-true;
+			}
+		}
+		&:disabled + label{
+			cursor: not-allowed;
+			opacity: 0.6;
+		}
+		display: none;
+	}
+}

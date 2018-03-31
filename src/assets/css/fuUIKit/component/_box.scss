@@ -1,0 +1,26 @@
+@include createBoxStyle(".box", 4, 1){
+	&.box-T{ >.header{border-top-width: 4px;} }
+	&.box-L{ >.header, >.content, >.footer{border-left-width: 4px;} }
+	&.box-R{ >.header, >.content, >.footer{border-right-width: 4px;} }
+	&.box-B{ >.footer{border-bottom-width: 4px;} }
+	
+	&.box-radius-none{ border-radius: 0px; }
+
+	@include _createBoxWidth(".box", "-W-", 20, 200, 20, 'px');
+	@include _createBoxMinHidth(".box", "-H-", 20, 200, 20, 'px');
+	
+	@include _createBoxColor(".box", "-default", $box-default-bg-color, $box-default-color, $box-default-line-color);
+	@include _createBoxColor(".box", "-primary", $box-primary-bg-color, $box-primary-color, $box-primary-line-color);
+	@include _createBoxColor(".box", "-info", $box-info-bg-color, $box-info-color, $box-info-line-color);
+	@include _createBoxColor(".box", "-success", $box-success-bg-color, $box-success-color, $box-success-line-color);
+	@include _createBoxColor(".box", "-warning", $box-warning-bg-color, $box-warning-color, $box-warning-line-color);
+	@include _createBoxColor(".box", "-fail", $box-fail-bg-color, $box-fail-color, $box-fail-line-color);
+}
+
+@include createBoxInfo(".boxInfo", 90px, 10px, ($bi-default-color, #fff), (#fff, #666)){
+	@include _createBoxInfoColor("&.boxInfo", "-primary", ($bi-primary-color, #fff), (#fff, #666));
+	@include _createBoxInfoColor("&.boxInfo", "-info", ($bi-info-color, #fff), (#fff, #666));
+	@include _createBoxInfoColor("&.boxInfo", "-success", ($bi-success-color, #fff), (#fff, #666));
+	@include _createBoxInfoColor("&.boxInfo", "-warning", ($bi-warning-color, #fff), (#fff, #666));
+	@include _createBoxInfoColor("&.boxInfo", "-fail", ($bi-fail-color, #fff), (#fff, #666));
+}

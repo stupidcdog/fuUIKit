@@ -1,0 +1,38 @@
+/*
+制作閃亮的文字樣式
+$NAME: 動畫名稱
+$FS: 開始數, $FE:結束數, $F_STEP:間隔, 
+$TS: 開始數, $TE:結束數, $T_STEP:間隔, 
+$C1:顏色漸變 - 顏色1, $C2: 顏色漸變 - 顏色2
+$Level: 從那個層級開始漸變
+ */
+@mixin createShineWord($NAME, $FS, $FE, $F_STEP, $TS, $TE, $T_STEP, $C1, $C2, $Level){
+	@include keyframes($NAME){
+		 from {
+			@include _createShine($FS, $FE, $F_STEP, $C1, $C2, $Level);
+		 }
+		 to {
+			@include _createShine($TS, $TE, $T_STEP, $C1, $C2, $Level);
+		 }
+	}
+}
+
+@mixin _createShine($S, $E, $STEP, $C1, $C2, $Level){
+	$M: ($E - $S) / $Level; 
+	$STYLE: '';
+	@while ($E > $S){
+		$tmpC: $C1;
+		@if($S >$M ){
+			$tmpC: $C2;
+		}
+		
+		@if(($S+$STEP) >= $E){
+			$STYLE:  #{$STYLE} #{'0px 0px'} #{$S}#{'px'} #{$tmpC};
+		}@else{
+			$STYLE:  #{$STYLE} #{'0px 0px'} #{$S}#{'px'} #{$tmpC} #{','};
+		}
+		
+		$S: $S + $STEP;
+	}
+	text-shadow: $STYLE;
+}

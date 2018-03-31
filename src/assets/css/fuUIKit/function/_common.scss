@@ -1,0 +1,8 @@
+@function getTAG($REPLACE, $TAG:''){
+	$_TAG: $REPLACE;
+	@if($TAG != ''){
+		$_TAG: $TAG;
+	}
+
+	@return $_TAG;
+}

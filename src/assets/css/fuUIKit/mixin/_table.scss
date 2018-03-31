@@ -1,0 +1,162 @@
+/*
+表格製作
+*可以SINGLE色系
+$TAG: 表格名稱, 
+$gBG: 背景(BODY, HEADER, FOOTER), 
+$FC*: 文字顏色(BODY, HEADER, FOOTER), 
+$gFS: 文字大小(NORMAL, MIN, MAX)
+$gBORDER: 線樣式(WIDTH, STYLE, COLOR), 
+$gH-PA: HEADER間格(NORMAL, MIN, MAX), 
+$gB-PA: BODY間格(NORMAL, MIN, MAX), 
+$gF-PA: FOOTER間格(NORMAL, MIN, MAX)
+ */
+@mixin createTableStyle($TAG, $gBG, $FC, $gFS, $gBORDER, $gH-PA, $gB-PA, $gF-PA){
+	$BG: nth( $gBG, 1); $BG-HEADER: nth( $gBG, 2);  $BG-FOOTER: nth( $gBG, 3); 
+	$B-W: nth( $gBORDER, 1); $B-S: nth( $gBORDER, 2);  $B-C: nth( $gBORDER, 3); 
+	$FS: nth( $gFS, 1); $FS-MIN: nth( $gFS, 2);  $FS-MAX: nth( $gFS, 3); 
+
+	$PA: nth( $gB-PA, 1); $PA-MIN: nth( $gB-PA, 2);  $PA-MAX: nth( $gB-PA, 3); 
+	$H-PA: nth( $gH-PA, 1); $H-PA-MIN: nth( $gH-PA, 2);  $H-PA-MAX: nth( $gH-PA, 3); 
+	$F-PA: nth( $gF-PA, 1); $F-PA-MIN: nth( $gF-PA, 2);  $F-PA-MAX: nth( $gF-PA, 3); 
+
+	#{$TAG}{
+		&#{$TAG}#{'-lg'}{ 
+			font-size: $FS-MAX; 
+			thead tr td{ padding: $H-PA-MAX; }
+			tbody tr td{ padding: $PA-MAX; }
+			tfoot tr td{ padding: $F-PA-MAX; }
+		}
+
+		&#{$TAG}#{'-sm'}{ 
+			font-size: $FS-MIN; 
+			&.liner, &.liner-L{ thead tr td{ border-bottom-width: 1px; } }
+			thead tr td{ padding: $H-PA-MIN; }
+			tbody tr td{ padding: $PA-MIN; }
+			tfoot tr td{ padding: $F-PA-MIN; }
+		}
+
+		&.liner, &.liner-V{
+			tr{
+				td{
+					&:last-child{ border-right-width: 0px; }
+					border-right-width: $B-W;
+					border-right-style: $B-S;
+				}
+			}
+		}
+		&.liner, &.liner-L{
+			thead{
+				tr{
+					td{ border-bottom-width: 2px; }
+				}
+			}
+			tr{
+				&:last-child{
+					td{
+						border-bottom-width: 0px;
+					}
+				}
+				td{
+					border-bottom-width: $B-W;
+					border-bottom-style: $B-S;
+				}
+			}
+		}
+
+		caption{
+			font-size: 0.9em;
+			padding: 2px 5px;
+			margin-bottom: 5px;
+			border-left-width: ($B-W + 2px);
+			border-left-style: $B-S;
+			text-align: left;
+		}
+		thead{
+			td{
+				&.hover{ cursor: pointer; }
+				padding: $H-PA;
+				font-size: 1.1em;
+			}
+		}
+		tbody{
+			td{
+				padding: $PA;
+			}
+		}
+		tfoot{
+			td{
+				padding: $F-PA;
+				font-size: 0.9em;
+				border-top-width: $B-W;
+				border-top-style: $B-S;
+			}
+		}
+		font-size: $FS;
+		border-width: $B-W;
+		border-style: $B-S;
+		border-spacing: 0px;
+		border-collapse: initial;
+
+		@content;
+	}
+	@include _createTableColor($TAG, '', $gBG, $FC, $B-C);
+}
+
+@mixin _createTableColor($TAG, $SUBTAG, $gBG, $FC, $B-C){
+	$BG: nth( $gBG, 1); $BG-HEADER: nth( $gBG, 2);  $BG-FOOTER: nth( $gBG, 3); 
+	$HEADER-C: $FC; $BODY-C: $FC; $FOOTER-C: $FC;
+
+	@if(length($FC) > 1){
+		$HEADER-C: nth($FC, 2); 
+		$BODY-C: nth($FC, 1); 
+		$FOOTER-C: nth($FC, 3);
+	}
+
+	#{$TAG}#{$SUBTAG}{
+		&.liner, &.liner-V{
+			tr{
+				td{ border-right-color: $B-C; }
+			}
+		}
+		&.liner, &.liner-L{
+			tr{
+				td{
+					border-bottom-color: $B-C;
+				}
+			}
+		}
+
+		&.twins tbody{
+			tr:nth-child(2n){
+				td{ background-color: darken($BG, 3%); }
+			}
+		}
+
+		caption{
+			color: darken($BODY-C, 6%);
+			border-left-color: darken($BODY-C, 6%);
+		}
+		thead{
+			td{
+				&.hover{ 
+					&:hover{
+						@include linear-gradientColor((lighten($BG-HEADER, 3%) 0%, darken($BG-HEADER, 2%) 100%), top, vertical); 
+						color: darken($FC, 20%);
+					}
+				}
+				@include linear-gradientColor((lighten($BG-HEADER, 5%) 0%, $BG-HEADER 100%), top, vertical);
+				color: darken($HEADER-C, 15%);
+			}
+		}
+		tfoot{
+			td{
+				@include linear-gradientColor((lighten($BG-FOOTER, 5%) 0%, $BG-FOOTER 100%), top, vertical);
+				color: lighten($FOOTER-C, 8%);
+				border-top-color: $B-C;
+			}
+		}
+		color: $BODY-C;
+		background-color: $BG;
+		border-color: $B-C;
+	}
+}

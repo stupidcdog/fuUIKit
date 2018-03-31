@@ -1,0 +1,39 @@
+@include createTableStyle(
+	".table", 
+	($table-default-color, darken($table-default-color, 4%), darken($table-default-color, 4%)), 
+	darken($table-default-color, 50%), 
+	($init-FS, $init-FS - 2px, $init-FS + 4px), 
+	(1px, solid, darken($table-default-color, 10%)), 
+	(10px, 3px, 10px 14px),
+	(6px 10px, 3px, 10px 14px),
+	(4px 10px, 2px, 6px 14px)
+){
+	@include _createTableColor(
+		"&.table", 
+		"-blue", 
+		($table-blue-color, darken($table-blue-color, 20%), darken($table-blue-color, 20%)), 
+		darken($table-blue-color, 55%),
+		darken($table-blue-color, 15%)
+	);
+	@include _createTableColor(
+		"&.table", 
+		"-green", 
+		($table-green-color, darken($table-green-color, 25%), darken($table-green-color, 25%)), 
+		darken($table-green-color, 55%),
+		darken($table-green-color, 15%)
+	);
+	@include _createTableColor(
+		"&.table", 
+		"-orange", 
+		($table-orange-color, darken($table-orange-color, 10%), darken($table-orange-color, 10%)), 
+		darken($table-orange-color, 45%),
+		darken($table-orange-color, 10%)
+	);
+	@include _createTableColor(
+		"&.table", 
+		"-red", 
+		($table-red-color, darken($table-red-color, 7%), darken($table-red-color, 7%)), 
+		darken($table-red-color, 40%),
+		darken($table-red-color, 10%)
+	);
+}

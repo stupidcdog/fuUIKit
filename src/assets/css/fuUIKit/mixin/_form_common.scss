@@ -1,0 +1,58 @@
+$_c_liner: #aaa;
+$_c_bg: #fff;
+$_c_font: #666;
+$_c_focus_liner: #66afe9;
+$_radius: 4px;
+@mixin createSelect($TAG:''){
+	$mTAG: getTAG('select', $TAG);
+	$sTAG: getTAG('.select', $TAG);
+	
+	#{$mTAG}{
+		&#{$sTAG}#{'-sm'}{
+			font-size: 13px;
+			padding: 3px 20px 4px 10px;
+			border-radius: $_radius - 2;
+			background-size: 16px;
+		}
+		&#{$sTAG}#{'-lg'}{
+			font-size: 20px;
+			padding: 10px 27px 10px 15px;
+			border-radius: $_radius + 2;
+			background-size: 20px;
+		}
+
+		&:not([disabled]):not([readonly]):not(.disabled):not(.readonly){
+			&:focus, &.focus, &:active, &.active{
+				border-color: $_c_focus_liner;
+				@include createBoxShadow(lighten($_c_focus_liner, 5%), 0px, 0px, 8px, 0.6);
+			}
+		}
+		
+		&[disabled], &[readonly], &.disabled, &.readonly{
+			cursor: not-allowed;
+			background-color: lighten($_c_liner, 25%);
+		}
+
+		&.error{
+			border-color: $fail-color;
+		}
+
+		@include createBoxShadow(#000, 0px, 1px, 1px, 0.075, inset);
+		@include cssHack(appearance, none);
+		background-color: $_c_bg;
+		background-image: url('#{$imgs-path}select-arrow.png');
+		background-repeat: no-repeat;
+		background-position: center right;
+		background-size: 18px;
+		border: 1px solid $_c_liner;
+		border-radius: $_radius;
+		width: 100%;
+		display: block;
+		padding: 6px 24px 6px 12px;
+		font-size: 16px;
+		color: $_c_font;
+
+		@content;
+	}
+
+}

@@ -1,0 +1,44 @@
+@mixin createCircleLoading($TAG, $SIZE:30px, $BG:white){
+	@include keyframes("circle-pulsate"){
+		0% {
+			@include cssHack(transform, scale(0.1));
+			opacity: 0;
+	    }
+	    50% {
+			opacity: 1;
+	    }
+	    100% {
+	    	@include cssHack(transform, scale(1.2));
+			opacity: 0;
+	    }
+	}
+
+	#{$TAG}{
+		&:after{
+			@include animate('circle-pulsate', 1s, 0s, ease-in-out, forwards, infinite);
+			content: '';
+			position: absolute;
+			border: 5px solid $BG;
+		    top: 50%;
+		    left: 50%;
+		    margin-top: -$SIZE;
+		    margin-left: -($SIZE/2 + 5);
+		    opacity: 0;
+		    position: absolute;
+		    
+		    width: $SIZE;
+		    height: $SIZE;
+		    border-radius: $SIZE;
+		}
+		@content;
+		position: relative;
+		cursor: not-allowed;
+	}
+}
+@mixin _createCircleColor($SUBTAG, $BG){
+	&#{$SUBTAG}{
+		&:after{
+			border-color: $BG;
+		}
+	}
+}

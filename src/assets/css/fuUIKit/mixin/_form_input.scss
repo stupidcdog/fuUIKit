@@ -1,0 +1,131 @@
+$_c_liner: #aaa;
+$_c_bg: #fff;
+$_c_font: #666;
+$_c_focus_liner: #66afe9;
+$_radius: 4px;
+@mixin createInput($TAG:''){
+	$mTAG: getTAG('input:not([type=button]):not([type=submit]):not([type=reset]):not([type=checkbox]):not([type=radio])', $TAG);
+	$sTAG: getTAG('.input', $TAG);
+	
+	#{$mTAG}{
+		&#{$sTAG}#{'-sm'}{
+			@include _createTipIcon(13px, 0px);
+			font-size: 13px;
+			padding: 3px 12px 4px 12px;
+			border-radius: $_radius - 2;
+		}
+		&#{$sTAG}#{'-lg'}{
+			@include _createTipIcon(20px, 4px);
+			font-size: 20px;
+			padding: 10px 12px;
+			border-radius: $_radius + 2;
+		}
+
+		&:not([disabled]):not([readonly]):not(.disabled):not(.readonly){
+			&:focus, &.focus, &:active, &.active{
+				border-color: $_c_focus_liner;
+				@include createBoxShadow(lighten($_c_focus_liner, 5%), 0px, 0px, 8px, 0.6);
+			}
+		}
+		
+		&[disabled], &[readonly], &.disabled, &.readonly{
+			cursor: not-allowed;
+			background-color: lighten($_c_liner, 25%);
+		}
+
+		&.error{
+			border-color: $fail-color;
+		}
+		
+		@include _createTipIcon(16px, 1px);
+
+		@include createBoxShadow(#000, 0px, 1px, 1px, 0.075, inset);
+		@include hack_transition(border-color, 0.15s, ease-in-out);
+		@include hack_transition(box-shadow, 0.15s, ease-in-out);
+		
+		background-color: $_c_bg;
+		border: 1px solid $_c_liner;
+		border-radius: $_radius;
+		width: 100%;
+		display: block;
+		padding: 6px 12px;
+		font-size: 16px;
+		color: $_c_font;
+
+		@content;
+	}
+}
+
+@mixin createInputGroup($TAG:'.input-group'){
+	#{$TAG}{
+		>*:not(i){
+			&:first-child{
+				border-top-left-radius: 6px !important;
+				border-bottom-left-radius: 6px !important;
+			}
+			&:last-child{
+				border-top-right-radius: 6px !important;
+				border-bottom-right-radius: 6px !important;
+			}
+			&#{$TAG}#{'-addon'}{
+				background-color: lighten($_c_liner, 25%);
+				border: 1px solid $_c_liner;
+				vertical-align: middle;
+				padding: 0px 8px !important;
+			}
+			display: table-cell;
+			border-radius: 0px !important;
+		}
+		>#{$TAG}#{'-addon'}:first-child{
+			~#{$TAG}#{'-addon'}{
+				border-right-width: 0px;
+			}
+			border-right-width: 0px;
+		}
+		>input{
+			~#{$TAG}#{'-addon'}{
+				border-left-width: 0px;
+				border-right-width: 1px !important;
+			}
+
+		}
+		
+		display: table;
+		@content;
+	}
+}
+
+@mixin _createTipIcon($FS, $PA){
+	&.error, &.correct{
+		+i{
+			&:after{
+				font-family: "dripicons-v2";
+				content: '';
+				position: relative;
+				margin-top: -($FS / 2 * 3 + $PA);
+				margin-right: 5px;
+				float: right;
+				font-size: $FS;
+			}
+			font-style: normal;
+		}
+	}
+
+	&.error{
+		+i{
+			&:after{
+				content: '\e063';
+				color: $fail-color;
+			}
+		}
+	}
+
+	&.correct{
+		+i{
+			&:after{
+				content: '\53';
+				color: $success-color;
+			}
+		}
+	}
+}

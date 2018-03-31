@@ -1,0 +1,122 @@
+/*
+建立共用樣式區間(ex: PA-10, PA-15 ...)
+*/
+@mixin createCommonSpace($Name:"PA-", $Style:"padding", $Start:5, $End:50, $Space:1, $Unit:'px'){
+	@while $End >= $Start{
+		.#{$Name}#{$Start}{
+			#{$Style}: $Start#{$Unit} !important;
+		}
+		$Start: $Start + $Space;
+	}
+}
+
+/*
+建立子物件共用樣式區間(ex: PA-10, PA-15 ...)
+*/
+@mixin createChildCommonSpace($Name:"PA-Item-", $Style:"padding", $Start:5, $End:50, $Space:1, $Unit:'px'){
+	@while $End >= $Start{
+		.#{$Name}#{$Start} > *{
+			#{$Style}: $Start#{$Unit} !important;
+		}
+		$Start: $Start + $Space;
+	}
+}
+
+/*
+建立固定的樣式寬度
+*/
+@mixin createWidth($Start:10, $End:100, $Space:10, $Unit:'%'){
+	@while $End >= $Start{
+		.W#{$Start}{
+			width: $Start#{$Unit} !important;
+		}
+		$Start: $Start + $Space;
+	}
+}
+
+/*
+建立Box的陰影
+$c: 顏色
+$level: 水平位移
+$vertical: 垂直位移
+$strength: 模糊程度
+$transparent: 透明度
+$inset: inset為內陰影
+*/
+@mixin createBoxShadow($c:#000, $level:0px, $vertical:0px, $strength:8px, $transparent: 0.18, $inset:''){
+	box-shadow: $level $vertical $strength rgba($c, $transparent) #{$inset};
+}
+
+/*
+建立平均分配寬度的樣式
+$TAG: tag名稱
+$W: 總寬度
+$C: 切分的數量
+$NT: 下一個dom物件
+$UNIT: 單位
+ */
+@mixin creatColWidth($TAG:'&.col-', $W:100, $C:5, $NT:'', $UNIT:'%'){
+	@while $C > 0{
+		#{$TAG}#{$C}{
+			@if($NT != ''){
+				#{$NT}{
+					&:first-child{
+						margin-left: 0px;
+					}
+					width: ($W / $C)#{$UNIT};
+					margin-left: -4px;
+				}
+			}@else{
+				width: ($W / $C)#{$UNIT};
+				margin-left: -4px;
+			}
+		}
+		$C: $C - 1;
+	}
+}
+
+/*
+建立文字H樣式
+$FS: 最基礎的字型大小
+$INCREASE: 增加級數
+$DECREASE: 遞減級數
+$COUNT: 產生數量
+$BASE: 基礎級數(套用$FS的大小)
+*/
+@mixin createHStyle($FS, $INCREASE, $DECREASE, $COUNT, $BASE){
+	$i:1;
+	@while ($COUNT >= $i){
+		h#{$i}{
+			$_FS: $FS;
+			@if ($BASE == $i){
+				font-size: $_FS;
+			}@elseif ($i < $BASE){
+				$_FS: ($FS + (($BASE - $i)*$INCREASE));
+				font-size: $_FS;
+			}@else{
+				$_FS:  ($FS - (($i - $BASE)*$DECREASE));
+				font-size: $_FS;
+			}
+			padding-bottom: $_FS / 2;
+			line-height: 160%;
+		}
+		$i: $i + 1;
+	}
+}
+
+/*
+建立基礎線框樣式
+$TAG: 前置名稱
+$STYLE: 邊框樣式
+$WIDTH: 邊框框度
+$COLOR: 顏色
+*/
+@mixin createBorderStyle($TAG, $STYLE, $WIDTH, $COLOR){
+	#{$TAG}#{'A'}{ border: $WIDTH $STYLE $COLOR; }
+	#{$TAG}#{'T'}{ border-top: $WIDTH $STYLE $COLOR; }
+	#{$TAG}#{'L'}{ border-left: $WIDTH $STYLE $COLOR; }
+	#{$TAG}#{'R'}{ border-right: $WIDTH $STYLE $COLOR; }
+	#{$TAG}#{'B'}{ border-bottom: $WIDTH $STYLE $COLOR; }
+}
+
+

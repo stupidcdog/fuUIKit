@@ -1,0 +1,45 @@
+@mixin createPagination($TAG, $MA:10px, $FS:16px){
+	#{$TAG}{
+		>ul{
+			a{
+				text-decoration: none;
+			}
+			li{
+				&.active{
+					cursor: default;
+					font-weight: bold;
+				}
+				display: inline-block;
+				margin: 0px 2px;
+				cursor: pointer;
+				user-select: none;
+				font-size: $FS;
+			}
+		}
+		margin: $MA auto;
+		text-align: center;
+		@content;
+	}
+}
+
+@mixin _createPaginationStyle_1($SUBTAG, $PA, $BG, $FC, $LINE){
+	$_BG_1: nth($BG, 1);
+	$_BG_2: nth($BG, 2);
+	$_FC: 	nth($FC, 1);
+	$_FC_H: nth($FC, 2);
+
+	#{$SUBTAG}{
+		li{
+			&.active, &:hover{
+				@include linear-gradientColor((darken($_BG_1, 3%) 0%, darken($_BG_2, 3%) 100%), top, vertical);
+				color: $_FC_H;
+			}
+
+			@include linear-gradientColor(($_BG_1 0%, $_BG_2 100%), top, vertical);
+			border: 1px solid rgba($LINE, 0.8);
+			border-radius: 4px;
+			padding: $PA;
+			color: $_FC;
+		}
+	}
+}

@@ -1,0 +1,46 @@
+/**
+ * 建立GRID樣式
+ * $TAG: 主樣式名稱
+ * $W: 總寬度
+ * $UNIT: 寬度單位(%)
+ * $MAX: 最大比例
+ * $MIN: 最小比例
+ * $INCREMENT: 遞增數
+*/
+
+@mixin _createGridLayout($TAG, $W, $UNIT, $MAX, $MIN, $INCREMENT){
+	$N: $MAX;
+	
+	@while ($N >= $MIN){
+		#{$TAG}#{$N}{
+			width: #{($W*($N/$MAX))}#{$UNIT};
+
+			$N: $N - $INCREMENT;
+		}
+	}
+}
+
+.row{
+	>*{
+		float: left;
+		box-sizing: border-box;
+	}
+	width: 100%;
+	@include _clearfix;
+
+	@media screen and (min-width:1200px){
+		@include _createGridLayout(".col-lg-", 100, "%", 12, 1, 1);
+	}
+	@media screen and (max-width:1200px) and (min-width:1000px){
+		@include _createGridLayout(".col-md-", 100, "%", 12, 1, 1);
+	}
+	@media screen and (max-width:1000px) and (min-width:768px){
+		@include _createGridLayout(".col-sm-", 100, "%", 12, 1, 1);
+	}
+	@media screen and (max-width:768px) and (min-width:480px){
+		@include _createGridLayout(".col-xs-", 100, "%", 12, 1, 1);
+	}
+	@media screen and (max-width:480px){
+		@include _createGridLayout(".col-xxs-", 100, "%", 12, 1, 1);
+	}
+}

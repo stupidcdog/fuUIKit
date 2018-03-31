@@ -1,0 +1,77 @@
+/* 漸層色: 咖啡 to 黑色 */
+@mixin createColor_G_CoffeeToDark(){
+	@include linear-gradientColor((#8C4822 0%, #000000 100%), top, vertical);
+}
+
+/* 漸層色: 亮咖啡 to 深咖啡 */
+@mixin createColor_G_LightCoffeeToDarkCoffee(){
+	@include linear-gradientColor((#f1814a  0%, #680907 100%), top, vertical);
+}
+
+/* 漸層色: 黃色 to 深土黃色 (黃金質感) */
+@mixin createColor_G_YellowToGold(){
+	@include linear-gradientColor((#F4DB8C 0%, #C78A03 100%), top, vertical);
+}
+
+/* 漸層色: 紫藍色 to 亮藍色 */
+@mixin createColor_G_PurpleBlueToLightBlue(){
+	@include linear-gradientColor((#4763AE 0%, #45A1E4 100%), top, vertical);
+}
+
+/* 漸層色: 紫藍色 to 亮藍色 (透明質感) */
+@mixin createColor_G_T_PurpleBlueToLightBlue(){
+	@include linear-gradientColor((rgba(#4763AE, 0.5) 0%, rgba(#45A1E4, 0.5) 100%), top, vertical);
+}
+
+/* 漸層色: 淺灰色 to 白色 */
+@mixin createColor_G_LightGaryToWhite(){
+	@include linear-gradientColor((#f0f0f0 0%, #ffffff 100%), top, vertical);
+}
+
+/* 漸層色: 淺紫色 to 紫色 */
+@mixin createColor_G_DarkPurpleToPurple(){
+	@include linear-gradientColor((#690088 0%, #400090 100%) , top, vertical);
+}
+
+/* 漸層色: 亮藍色 to 藍色 */
+@mixin createColor_G_LightBlueToBlue(){
+	@include linear-gradientColor((#0cf 0%, #0080ff 100%)  , top, vertical);
+}
+
+/* 漸層色: 多漸層 */
+@mixin createColor_G_Colorful(){
+	@include linear-gradientColor((#cebe29 0%, #9b1f50 33%, #2989d8 71%, #89b4ff 91%)  , 135deg, vertical);
+}
+
+/* 漸層色: 亮橘 to 橘 */
+@mixin createColor_G_LightOrangeToOrange(){
+	@include linear-gradientColor((#e99b68 0%, #e97d68 100%)  , top, vertical);
+}
+
+/* 漸層色: 水藍 to 淺藍 */
+@mixin createColor_G_WaterBlueToLightBlue(){
+	@include linear-gradientColor((#3ad2d1 0%, #3aa0d1 100%)  , top, vertical);
+}
+
+/* 漸層色: 亮綠 to 亮藍 */
+@mixin createColor_G_LightGreenToLightBlue(){
+	@include linear-gradientColor((#56d8c0 0%, #55bee8 100%)  , top, vertical);
+}
+
+/* 漸層色: 綠 to 亮黃 */
+@mixin createColor_G_GreenToLightYellow(){
+	@include linear-gradientColor((#16a085 0%, #f4d03f 100%)  , top, vertical);
+}
+
+/* 漸層色: 紅色 */
+@mixin createColor_G_RED(){
+	@include linear-gradientColor((#fe5295 0%, #f76f62 100%)  , top, vertical);
+}
+
+/* 漸層色: 綠色 */
+@mixin createColor_G_GREEN(){
+	@include linear-gradientColor((#50c9c3 0%, #96deda 100%)  , top, vertical);
+}
+
+
+

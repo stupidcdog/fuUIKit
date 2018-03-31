@@ -1,0 +1,11 @@
+*{
+	@include cssHack(box-sizing, border-box);
+	outline: medium none !important; /* for Firefox */
+ 	hlbr:expression(this.onFocus=this.blur()) !important; /* for IE */
+
+ 	&:hover, &:active, &:focus{
+		outline: medium none !important; /* for Firefox Google Chrome  */
+	    hlbr: expression(this.onFocus=this.blur()) !important; /* for IE */
+	    text-decoration: none;
+	}
+}

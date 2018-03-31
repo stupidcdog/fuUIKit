@@ -1,0 +1,91 @@
+/* 漸層色: 咖啡 to 黑色 */
+.BG-Coffee-Dark{ @include createColor_G_CoffeeToDark(); }
+/* 漸層色: 亮咖啡 to 深咖啡 */
+.BG-LCoffee-DCoffee{ @include createColor_G_LightCoffeeToDarkCoffee(); }
+/* 漸層色: 黃色 to 深土黃色 (黃金質感) */
+.BG-Gold{ @include createColor_G_YellowToGold(); }
+/* 漸層色: 紫藍色 to 亮藍色 */
+.BG-PB-LB{ @include createColor_G_PurpleBlueToLightBlue(); }
+/* 漸層色: 紫藍色 to 亮藍色 (透明質感) */
+.BG-T-PB-LB{ @include createColor_G_T_PurpleBlueToLightBlue(); }
+/* 漸層色: 淺灰色 to 白色 */
+.BG-LG-W{ @include createColor_G_LightGaryToWhite(); }
+/* 漸層色: 淺紫色 to 紫色 */
+.BG-DP-P{ @include createColor_G_DarkPurpleToPurple(); }
+/* 漸層色: 亮藍色 to 藍色 */
+.BG-LB-B{ @include createColor_G_LightBlueToBlue(); }
+/* 漸層色: 水藍色 to 淺藍色 */
+.BG-WB-LB{ @include createColor_G_WaterBlueToLightBlue(); }
+/* 漸層色: 亮橘 to 橘 */
+.BG-LO-O{ @include createColor_G_LightOrangeToOrange(); }
+/* 漸層色: 彩紅色*/
+.BG-COLORFUL{ @include createColor_G_Colorful(); }
+/* 漸層色: 亮綠 to 亮藍*/
+.BG-LG-LB{ @include createColor_G_LightGreenToLightBlue(); }
+/* 漸層色: 綠 to 亮黃*/
+.BG-G-LY{ @include createColor_G_GreenToLightYellow(); }
+/* 漸層色: 紅色*/
+.BG-gRED{ @include createColor_G_RED(); }
+/* 漸層色: 綠色*/
+.BG-gGREEN{ @include createColor_G_GREEN(); }
+
+/* 漸層色: 草綠色*/
+.BG-dustyGress{
+	@include linear-gradientColor((#d4fc79 0%, #96e6a1 100%)  , top, vertical);
+}
+/* 漸層色: 誘人的天青*/
+.BG-temptingAzure{
+	@include linear-gradientColor((#84fab0 0%, #8fd3f4 100%)  , top, vertical);
+}
+/* 漸層色: heavyRain*/
+.BG-heavyRain{
+	@include linear-gradientColor((#cfd9df 0%, #e2ebf0 100%)  , top, vertical);
+}
+/* 漸層色: Amy Crisp*/
+.BG-amyCrisp{
+	@include linear-gradientColor((#a6c0fe 0%, #f68084 100%)  , top, vertical);
+}
+/* 漸層色: Ripe Malinka*/
+.BG-ripeMalinka{
+	@include linear-gradientColor((#f093fb 0%, #f5576c 100%)  , top, vertical);
+}
+/* 漸層色: True Sunset*/
+.BG-trueSunset{
+	@include linear-gradientColor((#fa709a 0%, #fee140 100%)  , top, vertical);
+}
+/* 漸層色: New Life*/
+.BG-newLife{
+	@include linear-gradientColor((#43e97b 0%, #38f9d7 100%)  , top, vertical);
+}
+/* 漸層色: Morpheus Den*/
+.BG-morpheusDen{
+	@include linear-gradientColor((#30cfd0 0%, #330867 100%)  , top, vertical);
+}
+/* 漸層色: Plum Plate*/
+.BG-plumPlate{
+	@include linear-gradientColor((#667eea 0%, #764ba2 100%)  , top, vertical);
+}
+/* 漸層色: Lemon Gate*/
+.BG-lemonGate{
+	@include linear-gradientColor((#96fbc4 0%, #f9f586 100%)  , top, vertical);
+}
+/* 漸層色: Strong Bliss*/
+.BG-strongBliss{
+	@include linear-gradientColor((#f78ca0 0%, #f9748f 19%, #fd868c 60%, #fe9a8b 100%)  , top, vertical);
+}
+/* 漸層色: Sharp Blues*/
+.BG-sharpBlues{
+	@include linear-gradientColor((#00c6fb 0%, #005bea 100%)  , top, vertical);
+}
+/* 漸層色:  Red Salvation*/
+.BG-redSalvation{
+	@include linear-gradientColor((#f43b47 0%, #453a94 100%)  , top, vertical);
+}
+/* 漸層色: Perfect Blue*/
+.BG-perfectBlue{
+	@include linear-gradientColor((#3D4E81 0%, #5753C9 48%, #6E7FF3 100%)  , top, vertical);
+}
+/* 漸層色: Supreme Sky*/
+.BG-supremeSky{
+	@include linear-gradientColor((#D4FFEC 0%, #57F2CC 48%, #4596FB 100%)  , top, vertical);
+}

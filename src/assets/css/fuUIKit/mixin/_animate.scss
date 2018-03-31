@@ -1,0 +1,27 @@
+/*動畫元件*/
+@mixin keyframes($animationName) {
+  @-webkit-keyframes #{$animationName} {
+    @content;
+  }
+  @-moz-keyframes #{$animationName} {
+    @content;
+  }
+  @-o-keyframes #{$animationName} {
+    @content;
+  }
+  @keyframes #{$animationName} {
+    @content;
+  }
+}
+
+
+@mixin animate($name, $duration:300ms, $delay:0s, $animate:'ease', $mode:'forwards', $iteration:'initial', $direction:'initial', $playStatus:'initial') {
+    @include cssHack(animation-duration, $duration);
+    @include cssHack(animation-iteration-count, $iteration);
+    @include cssHack(animation-name, $name);
+    @include cssHack(animation-direction, $direction);
+    @include cssHack(animation-delay, $delay);
+    @include cssHack(animation-timing-function, $animate);
+    @include cssHack(animation-fill-mode, $mode);
+    @include cssHack(animation-play-state, $playStatus);
+}

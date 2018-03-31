@@ -1,0 +1,42 @@
+/*
+建立FLEX ITEMS的樣式
+ */
+@mixin _createFlexItem($TAG, $C, $GROW){
+	$I: 1;
+	@while $C >= $I{
+		#{$TAG}#{'-'}#{$I}{
+			$G:1;
+			@if (length($GROW) > 1){ $G: nth($GROW, $I); }@else{ $G: $GROW + ($I - 1); }
+
+			flex-grow: $G;
+		}
+		$I: $I + 1;
+	}
+}
+
+.flex{
+	@include _createFlexItem('>.flex-item', 5, 1);
+	&.inline{
+		//超過寬度時不斷行
+		flex-wrap: nowrap;
+	}
+	&.alignT{
+		align-items: flex-start;
+	}
+	&.alignC{
+		align-items: center;
+	}
+	&.alignB{
+		align-items: flex-end;
+	}
+	display: flex;
+	//排序方式
+	flex-direction: row;
+	//超過寬度時自動斷行
+	flex-wrap: wrap;
+	//對齊方式(水平方式)
+	justify-content: flex-start;
+	//對齊方式(垂直方式)
+	align-items: stretch;
+}
+

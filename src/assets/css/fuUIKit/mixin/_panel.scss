@@ -1,0 +1,102 @@
+@mixin createPanelStruct($TAG, $PA:(10px, 20px), $RADIO:2px, $FC:#666, $BG:#fff, $LC:#eee){
+	$PA-V: nth($PA, 1);
+	$PA-H: nth($PA, 2);
+
+	#{$TAG}{
+		>*{
+			line-height: 140%;
+		}
+		>.header{
+			>*{
+				display: inline-block;
+				margin-right: 5px;
+			}
+			.right{
+				>*{
+					&:last-child{
+						margin-right: 0px;
+					}
+					margin-right: 8px;
+				}
+				float: right;
+				margin-right: 0px;
+			}
+			.icon{
+				&:hover{
+					opacity: 1;
+					background-color: #eee;
+				}
+				font-size: 14px;
+				opacity: 0.7;
+				cursor: pointer;
+				line-height: 1.4rem;
+				border-radius: 2px;
+				padding: 5px;
+				display: inline-block;
+			}
+			display: block;
+			width: 100%;
+			font-size: 1.4rem;
+			font-weight: 300;
+			border-bottom-width: 2px;
+			border-bottom-style: solid;
+			padding-bottom: $PA-V;
+		}
+		>.content, >.footer{
+			max-height: 0px;
+			overflow: hidden;
+			padding-top: 0px;
+			padding-bottom: 0px;
+			@include hack_transition(all, 0.2s, linear);
+		}
+		>.content{
+			line-height: 180%;
+		}
+		>.footer{
+			font-size: 12px;
+			border-top-width: 1px;
+			border-top-style: dashed;
+		}
+		&.noShadow{
+			box-shadow: none;
+		}
+		&.active{
+			>.content{
+				max-height: 1000px;
+				padding-top: $PA-V;
+				padding-bottom: $PA-V;
+			}
+			>.footer{
+				max-height: 1000px;
+				padding-top: $PA-V;
+			}
+			.icon.turn{
+				@include _rotateY;
+			}
+		}
+		border-width: 1px;
+		border-style: solid;
+		border-radius: $RADIO;
+		padding: #{$PA-V} #{$PA-H};
+		@include createBoxShadow(#333, 0px, 0px, 2px, 0.2);
+		@content;
+	}
+	@include _createPanelColor($TAG, '', $FC, $BG, $LC);
+}
+
+@mixin _createPanelColor($TAG, $SUBTAG, $FC, $BG, $LC){
+	#{$TAG}#{$SUBTAG}{
+		>*{
+			color: $FC;
+		}
+		>.header{
+			border-bottom-color: $LC;
+		}
+		>.footer{
+			color: lighten($FC, 8%);
+			border-top-color: $LC;
+		}
+		background-color: $BG;
+		border-color: lighten($LC, 8%);
+	}
+}

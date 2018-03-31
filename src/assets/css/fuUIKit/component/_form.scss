@@ -1,0 +1,10 @@
+/*input component*/
+@include createInput();
+@include createInputGroup();
+@include createSelect();
+
+@include createCheckBox('.CK-S-1');
+@include createAnimateCheckBox('.ckAnimate', 20px, #666, (white, #f0f0f0, #aaa), (#666, #3F51B5, transparent), (#3f51b5, white));
+@include createAnimateCheckBox2('.ckAnimate-2', 20px, (#9e9e9e, #125de9), (#666, #125de9), white);
+
+@include createRadioBox('.RA-S-1');

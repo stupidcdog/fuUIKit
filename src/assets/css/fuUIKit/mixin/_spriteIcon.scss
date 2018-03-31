@@ -1,0 +1,66 @@
+/*
+產生sprite icon的樣式
+$NAME: 		主名稱
+$TAGNAME: 	icon名稱
+$W: 		切割寬
+$H:			切割高
+$ROW: 		行數
+$COL:		列數
+$RWD_Size: 	適應調整
+$R_W: 			適應調整_切割寬
+
+NOTE: 圖片需填滿，勿留空格
+*/
+@mixin setSpritePosition($NAME, $TAGNAME, $W, $H, $ROW:1, $COL:1, $RWD_Size:'', $R_W:''){
+	@if $NAME == ''{
+		@include _setSpritePositionWrap($TAGNAME, $W, $H, $ROW, $COL, $RWD_Size, $R_W);
+	}@else{
+		#{$NAME}{
+			@include _setSpritePositionWrap($TAGNAME, $W, $H, $ROW, $COL, $RWD_Size, $R_W);
+		}
+	}
+}
+
+@mixin _setSpritePositionWrap($TAGNAME, $W, $H, $ROW:1, $COL:1, $RWD_Size:'', $R_W:''){
+	@include _setSpritePosition($TAGNAME, $W, $H, $ROW, $COL);
+
+	// 設定RWD
+	@if $RWD_Size != ''{
+		$i: 0;
+		$COUNT: length($RWD_Size);
+		@while $i < $COUNT{
+			$ReSize: nth($RWD_Size, ($i + 1));
+			$ReW: nth($R_W, ($i + 1));
+			$ReH: $H * ($ReW / $W);
+			@media screen and (max-width: $ReSize){
+				@include _setSpritePosition($TAGNAME, $ReW, $ReH, $ROW, $COL);
+			}
+			$i: $i + 1;
+		}
+	}
+}
+@mixin _setSpritePosition($TAGNAME, $W, $H, $ROW:1, $COL:1){
+	$r: 0;
+	$i: 0;
+	@while $r < $ROW{
+		$c: 0;
+		@while $c < $COL{
+			$CName: #{$TAGNAME}#{'-'}#{($i + 1)};
+			@if(length($TAGNAME) > 1){
+				$CName: nth($TAGNAME, ($i + 1));
+			}
+
+			&#{$CName} {
+				background-position: -($c * $W)#{'px'} -($r * $H)#{'px'};
+			}
+
+			$c: $c+1;
+			$i: $i+1;
+		}
+		$r: $r+1;
+	}
+
+	width: $W#{'px'};
+	height: $H#{'px'};
+	background-size: ($W * $COL)#{'px'} ($H * $ROW)#{'px'};
+}

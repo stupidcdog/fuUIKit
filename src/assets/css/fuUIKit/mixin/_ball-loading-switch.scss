@@ -1,0 +1,66 @@
+@include keyframes("cp-balls-animate"){
+	0%{
+		@include cssHack(transform,  rotate(0deg)); 
+	}
+	100%{
+		@include cssHack(transform,  rotate(360deg)); 
+	}
+}
+@include keyframes("cp-balls-animate-before"){
+	0%{
+		@include cssHack(transform,  translate(-5px, -5px)); 
+	}
+	50%{
+		@include cssHack(transform,  translate(0px, 0px)); 
+	}
+	100%{
+		@include cssHack(transform,  translate(-5px, -5px)); 
+	}
+}
+@include keyframes("cp-balls-animate-after"){
+	0%{
+		@include cssHack(transform,  translate(5px, 5px)); 
+	}
+	50%{
+		@include cssHack(transform,  translate(0px, 0px)); 
+	}
+	100%{
+		@include cssHack(transform,  translate(5px, 5px)); 
+	}
+}
+
+@mixin createBallSwitchLoading($TAG, $C:(#f44336, #2196f3), $SIZE: 10px, $SPACE: 5px, $TIMER:1.5s){
+	$C1: nth($C, 1);
+	$C2: nth($C, 2);
+	#{$TAG}{
+		&.active{
+			&:before, &:after{
+				content: '';
+				width: $SIZE;
+				height: $SIZE;
+				margin: $SPACE;
+				border-radius: $SIZE;
+				text-align: center;
+				vertical-align: middle; 
+				display: inline-block;
+			}
+			&:before{
+				background-color: $C1;
+				animation: cp-balls-animate-before #{$TIMER} ease-in-out infinite;
+			}
+			&:after{
+				background-color: $C2;
+				animation: cp-balls-animate-after #{$TIMER} ease-in-out infinite;
+			}
+			visibility: visible;
+			opacity: 1;
+			animation: cp-balls-animate #{$TIMER} linear infinite;
+		}
+		position: absolute;
+		transition: all 0.3s ease-in-out;
+		visibility: hidden;
+		opacity: 0;
+
+		@content;
+	}
+}

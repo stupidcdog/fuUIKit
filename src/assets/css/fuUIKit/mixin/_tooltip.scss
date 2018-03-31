@@ -1,0 +1,135 @@
+@mixin createToolTip(
+	$TAG:'[data-toggle=\'tip\']', 
+	$MSG:'tip', 
+	$DIR:'data-direction', 
+	$BG: rgba(#333, 0.95),
+	$FC: #fff
+){
+	#{$TAG}{
+		&:before, &:after{
+			@include hack_transition(opacity, 0.2s, ease-in-out);
+			@include hack_transition(visibility, 0.2s, ease-in-out);
+			@include hack_transition(transform, 0.2s, cubic-bezier(0.71, 1.7, 0.77, 1.24));
+
+			@include cssHack(transform, translate3d(0,0,0));
+			position: absolute;
+			pointer-events: none;
+			visibility: hidden;
+			opacity: 0;
+			bottom: 16%;
+			left: 0%;
+		}
+		&:hover, &:focus{
+			&:before, &:after{
+				visibility: visible;
+				opacity: 1;
+
+				@include cssHack(transform, translateY(-30px));
+			}
+		}
+		&:before{
+			content: '';
+			z-index: 10;
+			border: 6px solid transparent;
+			background: transparent;
+			
+			border-top-color: $BG;
+			margin-left: 8px;
+			margin-bottom: -10px;
+		}
+		&:after{
+			content: attr(#{$MSG});
+			background-color: $BG;
+			color: $FC;
+			z-index: 9;
+			font-size: 14px;
+			line-height: 110%;
+			padding: 5px 10px;
+			border-radius: 6px;
+		}
+
+		//方向
+		//上
+		&#{'['}#{$DIR}#{'=\'TOP\''}#{']'}{
+			&:before, &:after{
+				bottom: 16%;
+				left: 0%;
+			}
+			&:before{
+				border-top-color: $BG;
+				margin-left: 8px;
+				margin-bottom: -10px;
+			}
+
+			&:hover, &:focus{
+				&:before, &:after{
+					@include cssHack(transform, translateY(-30px));
+				}
+			}
+		}
+
+		//下
+		&#{'['}#{$DIR}#{'=\'DOWN\''}#{']'}{
+			&:before, &:after{
+				top: 12%;
+				bottom: auto;
+				left: 0%;
+			}
+			&:before{
+				border-top-color: transparent;
+				border-bottom-color: $BG;
+				margin-top: -10px;
+				margin-bottom: 0px;
+			}
+
+			&:hover, &:focus{
+				&:before, &:after{
+					@include cssHack(transform, translateY(31px));
+				}
+			}
+		}
+
+		//左
+		&#{'['}#{$DIR}#{'=\'LEFT\''}#{']'}{
+			&:before, &:after{
+				bottom: 16%;
+				right: 25%;
+				left: auto;
+			}
+			&:before{
+				border-top-color: transparent;
+				border-left-color: $BG;
+				margin-left: 0px;
+				margin-right: -11px;
+				margin-bottom: 6px;
+			}
+
+			&:hover, &:focus{
+				&:before, &:after{
+					@include cssHack(transform, translateX(-100px));
+				}
+			}
+		}
+
+		//右
+		&#{'['}#{$DIR}#{'=\'RIGHT\''}#{']'}{
+			&:before, &:after{
+				bottom: 16%;
+				left: 30%;
+			}
+			&:before{
+				border-top-color: transparent;
+				border-right-color: $BG;
+				margin-left: -10px;
+				margin-bottom: 6px;
+			}
+
+			&:hover, &:focus{
+				&:before, &:after{
+					@include cssHack(transform, translateX(102px));
+				}
+			}
+		}
+		position: relative;
+	}
+}

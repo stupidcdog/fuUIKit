@@ -300,3 +300,84 @@ $_s4_c_select-font: #fff;
 	}
 }
 
+$_sRWD_m_h: 46px;
+$_sRWD_m_bg: #fbfbfb;
+$_sRWD_m_select_bg: #fff;
+$_sRWD_c_line: #eee;
+$_sRWD_c_font: #909592;
+$_sRWD_c_select_line: #2CC185;
+$_sRWD_c_select_font: #2CC185;
+@mixin createTabStyle_RWD($TAG, $SUBTAG){
+	&#{$TAG}#{$SUBTAG}{
+		>#{$TAG}#{'-menu'}{
+			>.ctrl{
+				.icon{
+					font-size: 32px;
+					color: $_sRWD_c_font;
+					position: relative;
+					top:3px;
+				}
+				&:not(.disabled):hover{
+					opacity: 1;
+				}
+				&.disabled{
+					opacity: 0.2;
+					cursor: not-allowed;
+				}
+				opacity: 0.7;
+				text-align: center;
+				flex-grow: 0;
+				flex-shrink: 0;
+				padding: 0px 5px;
+				line-height: $_sRWD_m_h;
+			}
+			>.menuItem{
+				>*{
+					>*{
+						&:hover, &.active{
+							a span{
+								color: $_sRWD_c_select_font;
+								position: relative;
+								top: -1px;
+							}
+							background-color: $_sRWD_m_select_bg;
+							border-top-color: $_sRWD_c_select_line;
+							border-top-width: 2px;
+							
+						}
+						a span{
+							color: $_sRWD_c_font;
+						}
+						flex-grow: 0;
+						flex-shrink: 0;
+						line-height: $_sRWD_m_h;
+						width: 10%;
+						border-top: 1px solid $_sRWD_c_line;
+						border-left:1px solid $_sRWD_c_line;
+						@media screen and (max-width:1200px) and (min-width:560px){
+							width: 25%;	
+						}
+						@media screen and (max-width:560px){
+							width: 33%;	
+						}
+					}
+					display: flex;
+					flex-wrap: nowrap;
+					height: $_sRWD_m_h;
+					@include hack_transition(transform, 0.3s, linear);
+				}
+				flex-grow: 1;
+				flex-shrink: 1;
+				width: 50%;
+				height: $_sRWD_m_h;
+				overflow: hidden;
+				background-color: $_sRWD_m_bg;
+			}
+			display: flex;
+			flex-wrap: nowrap;
+			width: 100%;
+			line-height: $_sRWD_m_h;
+			border-bottom: 1px solid $_sRWD_c_line;
+		}
+	}
+}

@@ -54,7 +54,11 @@
 				<a href=""><span>列表樣式</span></a>
 			</li>
 			<li :class="{active:(currentpage == 'Tabs')}">
-				<a href="/tabs#"><span>TABS樣式</span></a>
+				<a href="/tabs/basic#"><span>TABS樣式</span></a>
+				<ul>
+					<li><a href="/tabs/basic#">一般樣式</a> </li>
+					<li><a href="/tabs/sliderTabs#Tabs_Slider">Slider Tabs</a> </li>
+				</ul>
 			</li>
 			<li :class="{active:(currentpage == 'Modal')}">
 				<a href="/modal#"><span>MODAL樣式</span></a>
@@ -71,6 +75,12 @@
 					<li><a href="/FI/normal#"><span>normal</span></a></li>
 					<li><a href="/FI/drip#"><span>drip</span></a></li>
 					<li><a href="/FI/awesome#"><span>awesome</span></a></li>
+				</ul>
+			</li>
+			<li :class="{active:(currentpage == 'OTHER')}">
+				<a href="/selectize#"><span>其它套件</span></a>
+				<ul>
+					<li><a href="/selectize"><span>Selectize.js</span></a></li>
 				</ul>
 			</li>
 		</ul>

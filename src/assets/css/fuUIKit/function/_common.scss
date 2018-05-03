@@ -6,3 +6,54 @@
 
 	@return $_TAG;
 }
+
+// form a list by its arguments
+// can take space-separated values
+// @return {list}
+@function list($args...) {
+    // here, $args is an arglist
+    // to make it a normal list, join with an empty list
+    $result: join((), $args);
+
+    // in case of space-separated items are passed
+    // the length of $result is 1, which is not useful
+    @if length($args) == 1 {
+        @return nth($result, 1);
+    }
+    @else {
+        @return $result;
+    }
+}
+
+@function to-list($value) {
+	@return if(type-of($value) != list, ($value,), $value);
+}
+
+/*
+$list: a, b, c d e, f, g, h;
+$new-list: to-string($list); // abcdefgh
+$new-list: to-string($list, '-'); // a-b-c-d-e-f-g-h
+ */
+@function to-string($list, $glue: '', $is-nested: false) {
+  $result: null;
+
+  @for $i from 1 through length($list) {
+    $e: nth($list, $i);
+
+    @if type-of($e) == list {
+      $result: $result#{to-string($e, $glue, true)};
+    } @else {
+      $result: if(
+        $i != length($list) or $is-nested,
+        $result#{$e}#{$glue},
+        $result#{$e}
+      );
+    }
+  }
+
+  @return $result;
+}
+
+@function contains(/* List */ $haystack, /* Any */ $needle) {
+  @return not not index($haystack, $needle);
+}

@@ -114,7 +114,7 @@
 	</article>
 </template>
 <script>
-export default{
+export default {
 	methods:{
 		MH: function (){
 			document.querySelector('#modalBase').Modal.hide();

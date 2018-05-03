@@ -8,8 +8,9 @@ import FormComponents from '@/views/formComponents'
 import SelectTag from '@/views/formComponents_selecttag'
 import Table from '@/views/table'
 import Tabs from '@/views/tabs'
+import SliderTabs from '@/views/SliderTabs'
 import Box from '@/views/box'
-import Animation from'@/views/animation'
+import Animation from '@/views/animation'
 import Modal from '@/views/modal'
 import LayoutGrid from '@/views/layout_grid'
 
@@ -17,17 +18,19 @@ import FI_DRIP from '@/views/FI_DRIP'
 import FI_NORMAL from '@/views/FI_NORMAL'
 import FI_AWESOME from '@/views/FI_AWESOME'
 
+import O_SELECTIZE from '@/views/other_selectize'
+
 Vue.use(Router)
 
 export default new Router({
-  base:'/',
+  base: '/',
   mode: 'history',
   scrollBehavior: () => ({ y: 0 }),
   routes: [
     {
       path: '/',
       name: 'index',
-      component: Modal
+      component: Tabs
     },
     {
       path: '/normal',
@@ -60,9 +63,14 @@ export default new Router({
       component: Table
     },
     {
-      path: '/tabs',
+      path: '/tabs/basic',
       name: 'Tabs',
       component: Tabs
+    },
+    {
+      path: '/tabs/sliderTabs',
+      name: 'Tabs',
+      component: SliderTabs
     },
     {
       path: '/box',
@@ -93,6 +101,11 @@ export default new Router({
       path: '/FI/awesome',
       name: 'FI',
       component: FI_AWESOME
+    },
+    {
+      path: '/selectize',
+      name: 'OTHER',
+      component: O_SELECTIZE
     }
   ]
 })

@@ -3,4 +3,5 @@
 	@include createTabStyle2('.tab', '-wrapper2');
 	@include createTabStyle3('.tab', '-wrapper3');
 	@include createTabStyle4('.tab', '-wrapper4');
+	@include createTabStyle_RWD('.tab', '-wrapper-rwd');
 }
